@@ -1,22 +1,56 @@
-* {
-    margin: 0;
-    padding: 0;
+*{
+  margin: 0;
+  padding: 0;
 }
-
 body {
-    background: black;
+  overflow: hidden;
+  background: black;
+  font-family: 'IBM Plex Mono', monospace;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#settings {
+  font-size: 1.2em;
+  position: absolute;
+  z-index: 1000;
+  color: white;
+  width: 300px;
+  height: 150px;
+  background-color: #232323;
+  border-radius: 5px;
+  padding: 30px 10px;
+  top:50%;
+  left: 50%;
+  margin-left: -75px;
+  margin-top: -150px;
+  border: solid 1px rgb(0,255,70);
+}
+input{
+  background: none;
+  border: none;
+  font-size: 1em;
+  color: white;
 }
 
-canvas {
-    display: block;
+.colorInput{
+  width: 20px;
+  cursor: pointer;
 }
-
-#color {
-    color: #BBB;
-    font-family: helvetica, arial, sans-serif;
-    font-size: 1.2em;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    z-index: 1000;
+.textInput{
+  width: 40px;
+  font-size: 1em;
+  font-family: 'IBM Plex Mono', monospace;
+  text-align: center !important;
+  border-bottom: solid 1px;
+}
+.buttonInput{
+  position: inherit;
+  right: 0;
+  border: solid 1px rgb(0,255,70);
+  background: black;
+  padding: 5px 10px;
+  margin: 10px;
 }
