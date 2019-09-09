@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>SNAKE!</title>
+    <script src="js/index.js" charset="utf-8"></script>
+    <script src="js/snake.js" charset="utf-8"></script>
+    <script src="js/food.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+  </head>
+  <body>
+    <div class="main boxes">
+    <center>
+      <div class="overlayHold"><h1 id="overlayPrim">Click to Start Game</h1><div id="overlaySeco">WASD controls, P/ESC pauses.</div></div>
+      <div class="cResizer">
+        <canvas id="canvas" width="300" height="300"></canvas>
+      </div>
+        <div class="scores settings">
+          <h1>Score: <p id="score">0</p> </h1>
+          <h3>Length: <p id="length">1</p> </h3>
+        </div>
+    </center>
+  </div>
+  <i class="material-icons" id="settingClick" aria-label="Settings">
+    settings
+  </i>
+    <div class="settings boxes slide-right" style="display:none">
+      <i class="material-icons" aria-label="Close">
+        close
+      </i>
+      <div class="inputClass">
+          <input type="checkbox" name="sqrpaCheck" id="sqrpaCheck">
+          <label for="sqrpaCheck">Square Play Area</label>
+      </div>
+      <div class="inputClass">
+        <label for="pasCount">Play Area Size</label>
+        <input type="number" name="pasCount" value="39" id="pasCount" min="10" max="1600">
+      </div>
+      <div class="inputClass">
+        <label for="pahCount">Play Area Height</label>
+        <input type="number" name="pahCount" value="39" id="pahCount" min="10" max="800">
+      </div>
+      <div class="inputClass">
+        <label for="sqrS">Snake Size</label>
+        <input type="number" name="sqrS" value="20" id="snSize" min="3" max="20">
+      </div>
+      <div class="inputClass">
+        <label for="speed">Snake Speed</label>
+        <input type="number" name="speed" value="5" id="snSpeed" min="2" max="20">
+      </div>
+      <div class="inputClass">
+        <label for="colorPicker">Food Color:</label>
+        <input type="color" name="colorPicker" class="inputColor" id="foColor" value="#ff0000">
+        <br>
+        <label for="colorPicker">Snake Color:</label>
+        <input type="color" name="colorPicker" class="inputColor" id="snColor" value="#008000">
+      </div>
+      <div class="inputClass">
+          <input type="checkbox" name="gridCheck" id="gridCheck">
+          <label for="gridCheck">Grid</label>
+          <br>
+          <input type="checkbox" name="wrapCheck" id="wrapCheck">
+          <label for="wrapCheck">Wrapping Map</label>
+      </div>
+    </div>
+  </body>
+</html>
