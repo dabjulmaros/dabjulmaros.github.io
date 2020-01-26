@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
         <title>Matrix</title>
         <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
@@ -12,13 +12,13 @@
     </head>
 <body>
     <canvas id="c"></canvas>
-    <div id="settings" style="display:none">
-      <h3>Settings</h3>
-      <p>Font size: <input type="number" min="2" value="20" class="textInput" id="fontSize"> px</p>
-      <p>Text color: <input type="color" class="colorInput" id="textC" value="#00ff46"></p>
-      <p>Background  color: <input type="color" class="colorInput" id="backC" value="#000000"></p>
-      <input type="button" id="okButton" value="Ok" class="buttonInput" onclick="changeSettings()">
+    <canvas id="canvas"></canvas>
+    <div id="clock">
+      <div class="time">--:-- --</div>
+      <div class="date">
+        ----
+      </div>
     </div>
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

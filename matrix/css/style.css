@@ -1,0 +1,33 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+canvas{position: absolute;}
+body {
+  overflow: hidden;
+  background: black;
+  font-family: 'IBM Plex Mono', monospace;
+}
+#clock {
+  font-size: 10em;
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.date{
+  font-size: .3em;
+}
+
+.fade-in{
+  animation: fade 1.4s ease-in-out both;
+}
+@keyframes fade {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
