@@ -32,7 +32,7 @@ body{
   position: absolute;
   background-color: #ffffffad;
   padding-bottom: 5px;
-  cursors:pointer;
+  cursor:pointer;
   width: 500px;/*controled by js*/
   top: 200px;/*controled by js*/
   left: 572px;/*controled by js*/
