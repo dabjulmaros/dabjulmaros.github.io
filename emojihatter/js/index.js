@@ -35,8 +35,8 @@ function generateHatted(face,hat){
   if(!settings.inverseOrder){
     ctx.font = `${160+parseInt(settings.faceSizeOffset)}px sans-serif`;
     ctx.save();
-    ctx.rotate(settings.faceRotation * Math.PI / 180);
-    ctx.fillText(face, canvas.width*(1/2)+settings.faceOffsetX, canvas.height*(2/3)+settings.faceOffsetY);
+    ctx.rotate(parseInt(settings.faceRotation) * Math.PI / 180);
+    ctx.fillText(face, canvas.width*(1/2)+parseInt(settings.faceOffsetX), canvas.height*(2/3)+parseInt(settings.faceOffsetY));
     ctx.restore();
   }
 
@@ -49,8 +49,8 @@ function generateHatted(face,hat){
   if(settings.inverseOrder){
     ctx.font = `${160+parseInt(settings.faceSizeOffset)}px sans-serif`;
     ctx.save();
-    ctx.rotate(settings.faceRotation * Math.PI / 180);
-    ctx.fillText(face, canvas.width*(1/2)+settings.faceOffsetX, canvas.height*(2/3)+settings.faceOffsetY);
+    ctx.rotate(parseInt(settings.faceRotation) * Math.PI / 180);
+    ctx.fillText(face, canvas.width*(1/2)+parseInt(settings.faceOffsetX), canvas.height*(2/3)+parseInt(settings.faceOffsetY));
     ctx.restore();
   }
 
