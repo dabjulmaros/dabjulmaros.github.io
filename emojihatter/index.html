@@ -12,137 +12,64 @@
     <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
     <link rel="manifest" href="icon/site.webmanifest">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
-    <style media="screen">
-      body{
-        margin:0;
-        background:#121212;
-        color:white;
-        font-size:2rem;
-        font-family: 'Roboto Mono', monospace;
-        display: flex;
-      	flex-direction: column;
-      	justify-content: center;
-      	align-items: center;
-        height:100vh;
-      }
-      img{
-        display: block;
-        margin: 1rem auto;
-        border:solid 1px rgba(255,255,255,.7);
-        width:400px;
-        height:400px;
-      }
-      .controls{
-      	display: flex;
-      	flex-direction: column;
-      	justify-content: center;
-      	align-items: center;
-      }
-      .block {
-        display:flex;
-        justify-content:center;
-        flex-wrap: wrap;
-      }
-      .break {
-        flex-basis: 100%;
-        height: 0;
-      }
-      input[type=text]{
-        -webkit-appearance: none;
-        text-align: center;
-        width: 3rem;
-        height: 2rem;
-        font-size: 2rem;
-        padding: 0;
-        color: white;
-        background: #121212;
-        font-family: 'Roboto';
-        border: none;
-        padding-bottom: .5rem;
-        border-bottom: white solid 2px;
-        margin:0 0 1rem 1rem;
-      }
-      button{
-        text-align: center;
-        font-size: 2rem;
-        color: white;
-        background: #121212;
-        font-family: 'Roboto mono';
-        padding: .5rem;
-        border: white solid 2px;
-        cursor: pointer;
-      }
-      button:hover{
-        color: white;
-        background: gray;
-      }
-      button:active{
-        color: #121212;
-        background: white;
-      }
-      @media only screen and (max-width: 600px) {
-        body{
-          font-size:3rem;
-        }
-        canvas{
-          margin: 1.5rem auto;
-          border-width:5px;
-        }
-        input[type=text]{
-          width: 5rem;
-          height: 3rem;
-          font-size: 3rem;
-          margin:0 0 1rem 1rem;
-        }
-        button{
-          font-size: 5rem;
-          padding: 1rem;
-        }
-      }
-    </style>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/index.css">
   </head>
   <body>
     <canvas id="canvas" width="400" height="400" style='display:none'></canvas>
-    <img id="result"  src=""/>
-    <div class="controls">
-      <div class="block">
-        <label for="hat">&nbsp;Hat: </label>
-        <input id="hat" type="text" name="hat" >
-        <div class="break"></div>
-        <label for="face">Face: </label>
-        <input id="face" type="text" name="face">
+    <div class="controls main">
+      <div class="controls">
+        <div class="block">
+          <label for="hat">&nbsp;Hat: </label>
+          <input id="hat" type="text" name="hat" value="🎩" >
+          <div class="break"></div>
+          <label hat">&nbsp;&nbsp;&nbsp;&nbsp;Size: </label>
+          <input id="hatSizeSlide" type="range" min="-100" max="100" value="0" >
+          <input id="hatSizeField" type="number" min="-100" max="100" value="0">
+          <div class="break"></div>
+          <label>X offset: </label>
+          <input id="hatOffsetXSlide" value="0" type="range" min="-200" max="200" >
+          <input id="hatOffsetXField" value="0" type="number" min="-200" max="200">
+          <div class="break"></div>
+          <label>Y offset: </label>
+          <input id="hatOffsetYSlide" value="0" type="range" min="-200" max="200"  >
+          <input id="hatOffsetYField" value="0" type="number" min="-200" max="200">
+          <div class="break"></div>
+          <label>Rotation: </label>
+          <input id="hatRotationSlide" value="0" type="range" min="0" max="360" >
+          <input id="hatRotationField" value="0" type="number" min="0" max="360">
+          <div class="break"></div>
+          <input type="checkbox" id="inverse" name="order">
+          <label for="order">Flip Order</label>
+        </div>
       </div>
-      <button type="button" name="button">Generate</button>
+      <div class="block">
+        <img id="result"  src=""/>
+        <button id="gen" type="button" name="button">Generate</button>
+      </div>
+      <div class="controls">
+        <div class="block">
+          <label for="face">Face: </label>
+          <input id="face" type="text" name="face" value="😃">
+          <div class="break"></div>
+          <label >&nbsp;&nbsp;&nbsp;&nbsp;Size: </label>
+          <input id="faceSizeSlide" type="range" min="-100" max="100" value="0" >
+          <input id="faceSizeField" type="number" min="-100" max="100" value="0">
+          <div class="break"></div>
+          <label>X offset: </label>
+          <input id="faceOffsetXSlide" value="0" type="range" min="-200" max="200" >
+          <input id="faceOffsetXField" value="0" type="number" min="-200" max="200">
+          <div class="break"></div>
+          <label>Y offset: </label>
+          <input id="faceOffsetYSlide" value="0" type="range" min="-200" max="200"  >
+          <input id="faceOffsetYField" value="0" type="number" min="-200" max="200">
+          <div class="break"></div>
+          <label>Rotation: </label>
+          <input id="faceRotationSlide" value="0" type="range" min="0" max="360" >
+          <input id="faceRotationField" value="0" type="number" min="0" max="360">
+        </div>
+      </div>
     </div>
   </body>
-  <script type="text/javascript">
-    const canvas = document.querySelector('#canvas');
-    const ctx = canvas.getContext("2d");
-    const img = document.querySelector("#result");
-
-    const hat = document.querySelector('#hat');
-    const face = document.querySelector('#face');
-
-    // The size of the emoji is set with the font
-    ctx.font = '160px serif'
-    // use these alignment properties for "better" positioning
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    ctx.fillText("😃", canvas.width*(1/2), canvas.height*(2/3));
-    ctx.fillText("🎩", canvas.width*(1/2), canvas.height*(1/3));
-    img.src=canvas.toDataURL("image/png");
-
-    document.querySelector('button').addEventListener("click",e=>{
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      ctx.fillText(face.value, canvas.width*(1/2), canvas.height*(2/3));
-      ctx.fillText(hat.value, canvas.width*(1/2), canvas.height*(1/3));
-      img.src=canvas.toDataURL("image/png");
-      // canvas.toBlob(function(blob) {
-      //     const item = new ClipboardItem({ "image/png": blob });
-      //     navigator.clipboard.write([item]);
-      // });
-    });
-  </script>
+  <script src="js/index.js" charset="utf-8"></script>
 </html>

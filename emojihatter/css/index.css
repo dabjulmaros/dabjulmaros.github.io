@@ -1,0 +1,99 @@
+body{
+  margin:0;
+  background:#121212;
+  color:white;
+  font-size:2rem;
+  font-family: 'Roboto Mono', monospace;
+  display: flex;
+  justify-content: center;
+  /* align-items: flex-start; */
+  height:100vh;
+}
+img{
+  display: block;
+  margin: 1rem auto;
+  border:solid 1px rgba(255,255,255,.7);
+  width:400px;
+  height:400px;
+}
+.controls{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.controls.main{
+  flex-direction: row;
+}
+.block {
+  display:flex;
+  justify-content:center;
+  flex-wrap: wrap;
+  width: 430px;
+}
+.break {
+  flex-basis: 100%;
+  height: 0;
+}
+input[type=text],input[type=number]{
+  -webkit-appearance: none;
+  text-align: center;
+  width: 3rem;
+  height: 2rem;
+  font-size: 2rem;
+  padding: 0;
+  color: white;
+  background: #121212;
+  font-family: 'Roboto mono';
+  border: none;
+  padding-bottom: .5rem;
+  border-bottom: white solid 2px;
+  margin:0 0 1rem 1rem;
+}
+input[type=number]{
+  width: 6rem;
+}
+input[type=checkbox]{
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  margin-top: 8px;
+}
+
+button{
+  text-align: center;
+  font-size: 2rem;
+  color: white;
+  background: #121212;
+  font-family: 'Roboto mono';
+  padding: .5rem;
+  border: white solid 2px;
+  cursor: pointer;
+}
+button:hover{
+  color: white;
+  background: gray;
+}
+button:active{
+  color: #121212;
+  background: white;
+}
+@media only screen and (max-width: 600px) {
+  body{
+    font-size:3rem;
+  }
+  canvas{
+    margin: 1.5rem auto;
+    border-width:5px;
+  }
+  input[type=text]{
+    width: 5rem;
+    height: 3rem;
+    font-size: 3rem;
+    margin:0 0 1rem 1rem;
+  }
+  button{
+    font-size: 5rem;
+    padding: 1rem;
+  }
+}
