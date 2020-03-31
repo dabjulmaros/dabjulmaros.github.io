@@ -25,10 +25,12 @@
       	align-items: center;
         height:100vh;
       }
-      canvas{
+      img{
         display: block;
         margin: 1rem auto;
         border:solid 1px rgba(255,255,255,.7);
+        width:400px;
+        height:400px;
       }
       .controls{
       	display: flex;
@@ -100,7 +102,8 @@
     </style>
   </head>
   <body>
-    <canvas id="canvas" width="400" height="400"></canvas>
+    <canvas id="canvas" width="400" height="400" style='display:none'></canvas>
+    <img id="result"  src=""/>
     <div class="controls">
       <div class="block">
         <label for="hat">&nbsp;Hat: </label>
@@ -115,6 +118,7 @@
   <script type="text/javascript">
     const canvas = document.querySelector('#canvas');
     const ctx = canvas.getContext("2d");
+    const img = document.querySelector("#result");
 
     const hat = document.querySelector('#hat');
     const face = document.querySelector('#face');
@@ -124,15 +128,21 @@
     // use these alignment properties for "better" positioning
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
+
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillText("😃", canvas.width*(1/2), canvas.height*(2/3));
+    ctx.fillText("🎩", canvas.width*(1/2), canvas.height*(1/3));
+    img.src=canvas.toDataURL("image/png");
+
     document.querySelector('button').addEventListener("click",e=>{
       ctx.clearRect(0,0,canvas.width,canvas.height);
       ctx.fillText(face.value, canvas.width*(1/2), canvas.height*(2/3));
       ctx.fillText(hat.value, canvas.width*(1/2), canvas.height*(1/3));
-
-      canvas.toBlob(function(blob) {
-          const item = new ClipboardItem({ "image/png": blob });
-          navigator.clipboard.write([item]);
-      });
+      img.src=canvas.toDataURL("image/png");
+      // canvas.toBlob(function(blob) {
+      //     const item = new ClipboardItem({ "image/png": blob });
+      //     navigator.clipboard.write([item]);
+      // });
     });
   </script>
 </html>
