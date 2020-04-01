@@ -35,22 +35,25 @@ function generateHatted(face,hat){
   if(!settings.inverseOrder){
     ctx.font = `${160+parseInt(settings.faceSizeOffset)}px sans-serif`;
     ctx.save();
+    ctx.translate(canvas.width*(1/2)+parseInt(settings.faceOffsetX),canvas.height*(2/3)+parseInt(settings.faceOffsetY));
     ctx.rotate(parseInt(settings.faceRotation) * Math.PI / 180);
-    ctx.fillText(face, canvas.width*(1/2)+parseInt(settings.faceOffsetX), canvas.height*(2/3)+parseInt(settings.faceOffsetY));
+    ctx.fillText(face,0,0);
     ctx.restore();
   }
 
-  ctx.save();
-  ctx.rotate(settings.hatRotation * Math.PI / 180);
   ctx.font = `${160+parseInt(settings.hatSizeOffset)}px sans-serif`;
-  ctx.fillText(hat, canvas.width*(1/2)+parseInt(settings.hatOffsetX), canvas.height*(1/3)+parseInt(settings.hatOffsetY));
+  ctx.save();
+  ctx.translate(canvas.width*(1/2)+parseInt(settings.hatOffsetX),canvas.height*(1/3)+parseInt(settings.hatOffsetY));
+  ctx.rotate(parseInt(settings.hatRotation) * Math.PI / 180);
+  ctx.fillText(hat,0,0);
   ctx.restore();
 
   if(settings.inverseOrder){
     ctx.font = `${160+parseInt(settings.faceSizeOffset)}px sans-serif`;
     ctx.save();
+    ctx.translate(canvas.width*(1/2)+parseInt(settings.faceOffsetX),canvas.height*(2/3)+parseInt(settings.faceOffsetY));
     ctx.rotate(parseInt(settings.faceRotation) * Math.PI / 180);
-    ctx.fillText(face, canvas.width*(1/2)+parseInt(settings.faceOffsetX), canvas.height*(2/3)+parseInt(settings.faceOffsetY));
+    ctx.fillText(face,0,0);
     ctx.restore();
   }
 
