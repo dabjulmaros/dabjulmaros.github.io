@@ -65,6 +65,12 @@ function generateHatted(face,hat){
   // });
 
 }
+document.getElementById('hat').addEventListener('focus',e=>{
+   e.currentTarget.value="";
+});
+document.getElementById('face').addEventListener('focus',e=>{
+   e.currentTarget.value="";
+});
 document.getElementById("inverse").addEventListener("click",e=>{
   settings.inverseOrder=!settings.inverseOrder;
   generateHatted(face.value,hat.value);
@@ -162,6 +168,40 @@ document.getElementById("faceRotationSlide").addEventListener("change",e=>{
 });
 document.getElementById("faceRotationField").addEventListener("change",e=>{
   const value = e.currentTarget.value;
+  document.getElementById("faceRotationSlide").value=value;
+  settings.faceRotation=value;
+  generateHatted(face.value,hat.value);
+});
+
+document.getElementById('hatReset').addEventListener('click',e=>{
+  const value = 0;
+  document.getElementById("hatSizeField").value=value;
+  document.getElementById("hatSizeSlide").value=value;
+  settings.hatSizeOffset=value;
+  document.getElementById("hatOffsetXField").value=value;
+  document.getElementById("hatOffsetXSlide").value=value;
+  settings.hatOffsetX=value;
+  document.getElementById("hatOffsetYField").value=value;
+  document.getElementById("hatOffsetYSlide").value=value;
+  settings.hatOffsetY=value;
+  document.getElementById("hatRotationField").value=value;
+  document.getElementById("hatRotationSlide").value=value;
+  settings.hatRotation=value;
+  generateHatted(face.value,hat.value);
+});
+
+document.getElementById('faceReset').addEventListener('click',e=>{
+  const value = 0;
+  document.getElementById("faceSizeField").value=value;
+  document.getElementById("faceSizeSlide").value=value;
+  settings.faceSizeOffset=value;
+  document.getElementById("faceOffsetXField").value=value;
+  document.getElementById("faceOffsetXSlide").value=value;
+  settings.faceOffsetX=value;
+  document.getElementById("faceOffsetYField").value=value;
+  document.getElementById("faceOffsetYSlide").value=value;
+  settings.faceOffsetY=value;
+  document.getElementById("faceRotationField").value=value;
   document.getElementById("faceRotationSlide").value=value;
   settings.faceRotation=value;
   generateHatted(face.value,hat.value);
