@@ -65,12 +65,9 @@ function generateHatted(face,hat){
   // });
 
 }
-document.getElementById("inverse").addEventListener("change",e=>{
-  if(e.currentTarget.checked) {
-        settings.inverseOrder=true;
-    } else {
-        settings.inverseOrder=false;
-    }
+document.getElementById("inverse").addEventListener("click",e=>{
+  settings.inverseOrder=!settings.inverseOrder;
+  generateHatted(face.value,hat.value);
 });
 document.getElementById("hatSizeSlide").addEventListener("change",e=>{
   const value = e.currentTarget.value;
