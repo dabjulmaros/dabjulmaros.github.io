@@ -36,6 +36,10 @@ img{
   flex-basis: 100%;
   height: 0;
 }
+.spaceOnTop{
+  position: relative;
+  bottom: -1.5rem
+}
 input[type=text],input[type=number]{
   -webkit-appearance: none;
   text-align: center;
