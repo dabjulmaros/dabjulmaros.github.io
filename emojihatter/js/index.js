@@ -108,13 +108,13 @@ document.getElementById('face').addEventListener('focus',e=>{
 document.getElementById('item').addEventListener('focus',e=>{
   e.currentTarget.value="";
 });
-document.getElementById('hat').addEventListener('focusout',e=>{
+document.getElementById('hat').addEventListener('blur',e=>{
   generateHatted();
 });
-document.getElementById('face').addEventListener('focusout',e=>{
+document.getElementById('face').addEventListener('blur',e=>{
   generateHatted();
 });
-document.getElementById('item').addEventListener('focusout',e=>{
+document.getElementById('item').addEventListener('blur',e=>{
   generateHatted();
 });
 
