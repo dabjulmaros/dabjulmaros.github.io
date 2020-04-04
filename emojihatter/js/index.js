@@ -28,7 +28,7 @@ const item = document.querySelector('#item');
 ctx.textAlign = "center";
 ctx.textBaseline = "middle";
 
-generateHatted();
+generateMad();
 
 function generateHatted(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
@@ -108,13 +108,13 @@ document.getElementById('face').addEventListener('focus',e=>{
 document.getElementById('item').addEventListener('focus',e=>{
   e.currentTarget.value="";
 });
-document.getElementById('hat').addEventListener('change',e=>{
+document.getElementById('hat').addEventListener('focusout',e=>{
   generateHatted();
 });
-document.getElementById('face').addEventListener('change',e=>{
+document.getElementById('face').addEventListener('focusout',e=>{
   generateHatted();
 });
-document.getElementById('item').addEventListener('change',e=>{
+document.getElementById('item').addEventListener('focusout',e=>{
   generateHatted();
 });
 
@@ -324,3 +324,26 @@ document.getElementById('itemReset').addEventListener('click',e=>{
   settings.ItemPosition="top";
   generateHatted();
 });
+function generateMad(){
+
+  ctx.font = "160px sans-serif";
+  ctx.save();
+  ctx.translate(240,260);
+  ctx.fillText("🤪",0,0);
+  ctx.restore();
+  
+  ctx.font = "160px sans-serif";
+  ctx.save();
+  ctx.translate(240,133.33);
+  ctx.fillText("🎩",0,0);
+  ctx.restore();
+
+  ctx.font = '82px sans-serif';
+  ctx.save();
+  ctx.translate(101,171);
+  ctx.rotate(2.56);
+  ctx.fillText("☕",0,0);
+  ctx.restore();
+  
+  img.src=canvas.toDataURL("image/png");
+}
