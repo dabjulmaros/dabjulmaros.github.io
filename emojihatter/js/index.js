@@ -4,14 +4,17 @@ const settings={
   "hatOffsetX":0,
   "hatOffsetY":0,
   "hatSizeOffset":0,
+  "hatMirror":false,
   "hatRotation":0,
   "faceOffsetX":0,
   "faceOffsetY":0,
   "faceSizeOffset":0,
+  "faceMirror":false,
   "faceRotation":0,
   "itemOffsetX":0,
   "itemOffsetY":0,
   "itemSizeOffset":0,
+  "itemMirror":false,
   "itemRotation":0,
   "itemPosition":"top"
 };
@@ -67,6 +70,9 @@ function drawHat(){
   ctx.save();
   ctx.translate(canvas.width*(1/2)+parseInt(settings.hatOffsetX),canvas.height*(1/3)+parseInt(settings.hatOffsetY));
   ctx.rotate(parseInt(settings.hatRotation) * Math.PI / 180);
+  if(settings.hatMirror){
+    ctx.scale(-1,1);
+  }
   ctx.fillText(hat.value,0,0);
   ctx.restore();
 }
@@ -75,6 +81,9 @@ function drawFace(){
   ctx.save();
   ctx.translate(canvas.width*(1/2)+parseInt(settings.faceOffsetX),canvas.height*(2/3)+parseInt(settings.faceOffsetY));
   ctx.rotate(parseInt(settings.faceRotation) * Math.PI / 180);
+  if(settings.faceMirror){
+    ctx.scale(-1,1);
+  }
   ctx.fillText(face.value,0,0);
   ctx.restore();
 }
@@ -83,6 +92,9 @@ function drawItem(){
   ctx.save();
   ctx.translate(canvas.width*(1/2)+parseInt(settings.itemOffsetX),canvas.height*(3/4)+parseInt(settings.itemOffsetY));
   ctx.rotate(parseInt(settings.itemRotation) * Math.PI / 180);
+  if(settings.itemMirror){
+    ctx.scale(-1,1);
+  }
   ctx.fillText(item.value,0,0);
   ctx.restore();
 }
@@ -122,6 +134,20 @@ document.getElementById("inverse").addEventListener("click",e=>{
   settings.inverseOrder=!settings.inverseOrder;
   generateHatted();
 });
+
+document.getElementById("hatMirror").addEventListener("click",e=>{
+  settings.hatMirror=!settings.hatMirror;
+  generateHatted();
+});
+document.getElementById("faceMirror").addEventListener("click",e=>{
+  settings.faceMirror=!settings.faceMirror;
+  generateHatted();
+});
+document.getElementById("itemMirror").addEventListener("click",e=>{
+  settings.itemMirror=!settings.itemMirror;
+  generateHatted();
+});
+
 document.getElementById("hatSizeSlide").addEventListener("change",e=>{
   const value = e.currentTarget.value;
   document.getElementById("hatSizeField").value=value;
@@ -287,6 +313,8 @@ document.getElementById('hatReset').addEventListener('click',e=>{
   document.getElementById("hatRotationField").value=value;
   document.getElementById("hatRotationSlide").value=value;
   settings.hatRotation=value;
+  document.querySelector("#hatMirror").checked=false;
+  settings.hatMirror=false;
   generateHatted();
 });
 
@@ -304,6 +332,8 @@ document.getElementById('faceReset').addEventListener('click',e=>{
   document.getElementById("faceRotationField").value=value;
   document.getElementById("faceRotationSlide").value=value;
   settings.faceRotation=value;
+  document.querySelector("#faceMirror").checked=false;
+  settings.faceMirror=false;
   generateHatted();
 });
 document.getElementById('itemReset').addEventListener('click',e=>{
@@ -320,8 +350,10 @@ document.getElementById('itemReset').addEventListener('click',e=>{
   document.getElementById("itemRotationField").value=value;
   document.getElementById("itemRotationSlide").value=value;
   settings.itemRotation=value;
-  document.querySelector('#itemPosition').value="top";
-  settings.ItemPosition="top";
+  document.querySelector("#itemPosition").value="top";
+  document.querySelector("#itemmMirror").checked=false;
+  settings.itemMirror=false;
+  settings.itemPosition="top";
   generateHatted();
 });
 function generateMad(){
