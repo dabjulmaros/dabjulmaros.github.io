@@ -17,63 +17,105 @@
   </head>
   <body>
     <canvas id="canvas" width="400" height="400" style='display:none'></canvas>
-    <div class="controls main">
-      <div class="controls">
-        <div class="block">
-          <label for="hat">&nbsp;Hat: </label>
-          <input id="hat" type="text" name="hat" value="🎩" >
-          <div class="break"></div>
-          <label >&nbsp;&nbsp;&nbsp;&nbsp;Size: </label>
-          <input id="hatSizeSlide" type="range" min="-100" max="100" value="0" >
-          <input id="hatSizeField" type="number" min="-100" max="100" value="0">
-          <div class="break"></div>
-          <label>X offset: </label>
-          <input id="hatOffsetXSlide" value="0" type="range" min="-200" max="200" >
-          <input id="hatOffsetXField" value="0" type="number" min="-200" max="200">
-          <div class="break"></div>
-          <label>Y offset: </label>
-          <input id="hatOffsetYSlide" value="0" type="range" min="-200" max="200"  >
-          <input id="hatOffsetYField" value="0" type="number" min="-200" max="200">
-          <div class="break"></div>
-          <label>Rotation: </label>
-          <input id="hatRotationSlide" value="0" type="range" min="0" max="360" >
-          <input id="hatRotationField" value="0" type="number" min="0" max="360">
-          <div class="break"></div>
-          <button id="hatReset" type="button" name="button">Reset Hat Settings</button>
-          <div class="break"></div>
-          <input type="checkbox" id="inverse" name="inverse" class="spaceOnTop">
-          <label for="inverse" class="spaceOnTop">Flip Order</label>
-        </div>
+    <div class="controls">
+      <div class="block main">
+          <div class="block">
+              <label for="hat">&nbsp;Hat: </label>
+              <input id="hat" type="text" name="hat" value="🎩" >
+              <span class="material-icons" id="showSettings">
+                arrow_left
+              </span>
+          </div>
+          <div class="block settings">
+              <label >&nbsp;&nbsp;&nbsp;&nbsp;Size: </label>
+              <input id="hatSizeSlide" type="range" class="slider" min="-100" max="100" value="0" >
+              <input id="hatSizeField" type="number" min="-100" max="100" value="0">
+              <div class="break"></div>
+              <label>X offset: </label>
+              <input id="hatOffsetXSlide" value="0" type="range" class="slider" min="-200" max="200" >
+              <input id="hatOffsetXField" value="0" type="number" min="-200" max="200">
+              <div class="break"></div>
+              <label>Y offset: </label>
+              <input id="hatOffsetYSlide" value="0" type="range" class="slider" min="-200" max="200"  >
+              <input id="hatOffsetYField" value="0" type="number" min="-200" max="200">
+              <div class="break"></div>
+              <label>Rotation: </label>
+              <input id="hatRotationSlide" value="0" type="range" class="slider" min="0" max="360" >
+              <input id="hatRotationField" value="0" type="number" min="0" max="360">
+              <div class="break"></div>
+              <button id="hatReset" type="button" name="button">Reset Hat Settings</button>
+              <div class="break"></div>
+              <input type="checkbox" id="inverse" name="inverse" class="spaceOnTop">
+              <label for="inverse" class="spaceOnTop">Flip Order</label>
+          </div>
       </div>
-      <div class="block">
-        <img id="result"  src=""/>
-        <button id="gen" type="button" name="button">Generate</button>
+      <div class="block main">
+          <div class="block">
+              <label for="face">Face: </label>
+              <input id="face" type="text" name="face" value="😃">
+              <span class="material-icons" id="showSettings">
+                arrow_left
+              </span>
+          </div>
+          <div class="block settings">
+              <label >&nbsp;&nbsp;&nbsp;&nbsp;Size: </label>
+              <input id="faceSizeSlide" type="range" class="slider" min="-100" max="100" value="0" >
+              <input id="faceSizeField" type="number" min="-100" max="100" value="0">
+              <div class="break"></div>
+              <label>X offset: </label>
+              <input id="faceOffsetXSlide" value="0" type="range" class="slider" min="-200" max="200" >
+              <input id="faceOffsetXField" value="0" type="number" min="-200" max="200">
+              <div class="break"></div>
+              <label>Y offset: </label>
+              <input id="faceOffsetYSlide" value="0" type="range" class="slider" min="-200" max="200"  >
+              <input id="faceOffsetYField" value="0" type="number" min="-200" max="200">
+              <div class="break"></div>
+              <label>Rotation: </label>
+              <input id="faceRotationSlide" value="0" type="range" class="slider" min="0" max="360" >
+              <input id="faceRotationField" value="0" type="number" min="0" max="360">
+              <div class="break"></div>
+              <button id="faceReset" type="button" name="button">Reset Face Settings</button>
+          </div>
       </div>
-      <div class="controls">
-        <div class="block">
-          <label for="face">Face: </label>
-          <input id="face" type="text" name="face" value="😃">
-          <div class="break"></div>
-          <label >&nbsp;&nbsp;&nbsp;&nbsp;Size: </label>
-          <input id="faceSizeSlide" type="range" min="-100" max="100" value="0" >
-          <input id="faceSizeField" type="number" min="-100" max="100" value="0">
-          <div class="break"></div>
-          <label>X offset: </label>
-          <input id="faceOffsetXSlide" value="0" type="range" min="-200" max="200" >
-          <input id="faceOffsetXField" value="0" type="number" min="-200" max="200">
-          <div class="break"></div>
-          <label>Y offset: </label>
-          <input id="faceOffsetYSlide" value="0" type="range" min="-200" max="200"  >
-          <input id="faceOffsetYField" value="0" type="number" min="-200" max="200">
-          <div class="break"></div>
-          <label>Rotation: </label>
-          <input id="faceRotationSlide" value="0" type="range" min="0" max="360" >
-          <input id="faceRotationField" value="0" type="number" min="0" max="360">
-          <div class="break"></div>
-          <button id="faceReset" type="button" name="button">Reset Face Settings</button>
-        </div>
+      <div class="block main">
+          <div class="block">
+              <label for="item">item: </label>
+              <input id="item" type="text" name="item" value="">
+              <span class="material-icons" id="showSettings">
+                arrow_left
+              </span>
+          </div>
+          <div class="block settings">
+              <label >&nbsp;&nbsp;&nbsp;&nbsp;Size: </label>
+              <input id="itemSizeSlide" type="range" class="slider" min="-100" max="100" value="0" >
+              <input id="itemSizeField" type="number" min="-100" max="100" value="0">
+              <div class="break"></div>
+              <label>X offset: </label>
+              <input id="itemOffsetXSlide" value="0" type="range" class="slider" min="-200" max="200" >
+              <input id="itemOffsetXField" value="0" type="number" min="-200" max="200">
+              <div class="break"></div>
+              <label>Y offset: </label>
+              <input id="itemOffsetYSlide" value="0" type="range" class="slider" min="-200" max="200"  >
+              <input id="itemOffsetYField" value="0" type="number" min="-200" max="200">
+              <div class="break"></div>
+              <label>Rotation: </label>
+              <input id="itemRotationSlide" value="0" type="range" class="slider" min="0" max="360" >
+              <input id="itemRotationField" value="0" type="number" min="0" max="360">
+              <div class="break"></div>
+              <label >Position:</label>
+              <select id="itemPosition">
+                <option value="top">Foreground</option>
+                <option value="middle">Middle</option>
+                <option value="bottom">Background</option>
+              </select>
+              <div class="break"></div>
+              <button id="itemReset" type="button" name="button">Reset Item Settings</button>
+          </div>
       </div>
-    </div>
+  </div>
+  <div class="controls">
+      <img id="result"  src=""/>
+  </div>
   </body>
   <script src="js/index.js" charset="utf-8"></script>
 </html>

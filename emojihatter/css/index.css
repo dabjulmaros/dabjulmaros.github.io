@@ -7,8 +7,9 @@ body{
   display: flex;
   justify-content: center;
   /* align-items: flex-start; */
-  height:100vh;
+  min-height:100vh;
 }
+
 img{
   display: block;
   background: rgba(255, 255, 255, 0.3);
@@ -23,14 +24,38 @@ img{
   justify-content: center;
   align-items: center;
 }
-.controls.main{
-  flex-direction: row;
-}
 .block {
   display:flex;
   justify-content:center;
   flex-wrap: wrap;
-  width: 430px;
+  padding: 0 2rem;
+}
+.block.main{
+  flex-direction: column;
+}
+.block.main span {
+  font-size: 3rem;
+  cursor: pointer;
+  padding-left: .5rem;
+  height: 3rem;
+  width: 3rem;
+  transition: transform .5s;
+}
+.rotate{
+  transform: rotate(-90deg);
+}
+.block.settings {
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+  max-width: 30rem;
+  transition: ease-in-out .5s;
+}
+.block.settings.show{
+  display: flex;
+  margin: 0 0 3.5rem;
+  height: 300px;
+  overflow-y: scroll;
 }
 .break {
   flex-basis: 100%;
@@ -40,7 +65,7 @@ img{
   position: relative;
   bottom: -1.5rem
 }
-input[type=text],input[type=number]{
+input:not(.slider),select{
   -webkit-appearance: none;
   text-align: center;
   width: 3rem;
@@ -59,12 +84,16 @@ input[type=number]{
   width: 6rem;
 }
 input[type=checkbox]{
+  -webkit-appearance: checkbox;
   cursor: pointer;
   width: 2rem;
   height: 2rem;
   margin-top: 8px;
 }
-
+select{
+  width: auto;
+  height: auto;
+}
 button{
   text-align: center;
   font-size: 2rem;
@@ -101,4 +130,43 @@ button:active{
     font-size: 5rem;
     padding: 1rem;
   }
+}
+input.slider {
+  -webkit-appearance: none;
+  height: .5rem;
+  margin-top: 1.3rem;
+  border-radius: 5px;
+  background: #ffff;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+input.slider:hover {
+  opacity: 1;
+}
+
+input.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: #babac0;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  background-color:#fff;
+  width:2px
+}
+::-webkit-scrollbar:hover {width:4px}
+::-webkit-scrollbar-button {display:none}
+::-webkit-scrollbar-track {
+  background-color:#121212
+}
+::-webkit-scrollbar-thumb {
+  background-color:#babac0;
+  border-radius:16px;
 }
