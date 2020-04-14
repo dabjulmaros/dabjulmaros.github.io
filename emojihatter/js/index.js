@@ -6,16 +6,19 @@ const settings={
   "hatSizeOffset":0,
   "hatMirror":false,
   "hatRotation":0,
+  "hatTransparency":100,
   "faceOffsetX":0,
   "faceOffsetY":0,
   "faceSizeOffset":0,
   "faceMirror":false,
   "faceRotation":0,
+  "faceTransparency":100,
   "itemOffsetX":0,
   "itemOffsetY":0,
   "itemSizeOffset":0,
   "itemMirror":false,
   "itemRotation":0,
+  "itemTransparency":100,
   "itemPosition":"top"
 };
 //-----------------------------//
@@ -67,6 +70,7 @@ function generateHatted(){
 }
 function drawHat(){
   ctx.font = `${160+parseInt(settings.hatSizeOffset)}px sans-serif`;
+  ctx.fillStyle=`rgba(0,0,0,${settings.hatTransparency/100})`;
   ctx.save();
   ctx.translate(canvas.width*(1/2)+parseInt(settings.hatOffsetX),canvas.height*(1/3)+parseInt(settings.hatOffsetY));
   ctx.rotate(parseInt(settings.hatRotation) * Math.PI / 180);
@@ -78,6 +82,7 @@ function drawHat(){
 }
 function drawFace(){
   ctx.font = `${160+parseInt(settings.faceSizeOffset)}px sans-serif`;
+  ctx.fillStyle=`rgba(0,0,0,${settings.faceTransparency/100})`;
   ctx.save();
   ctx.translate(canvas.width*(1/2)+parseInt(settings.faceOffsetX),canvas.height*(2/3)+parseInt(settings.faceOffsetY));
   ctx.rotate(parseInt(settings.faceRotation) * Math.PI / 180);
@@ -89,6 +94,7 @@ function drawFace(){
 }
 function drawItem(){
   ctx.font = `${160+parseInt(settings.itemSizeOffset)}px sans-serif`;
+  ctx.fillStyle=`rgba(0,0,0,${settings.itemTransparency/100})`;
   ctx.save();
   ctx.translate(canvas.width*(1/2)+parseInt(settings.itemOffsetX),canvas.height*(3/4)+parseInt(settings.itemOffsetY));
   ctx.rotate(parseInt(settings.itemRotation) * Math.PI / 180);
@@ -196,6 +202,18 @@ document.getElementById("hatRotationField").addEventListener("change",e=>{
   settings.hatRotation=value;
   generateHatted();
 });
+document.getElementById("hatTransparencySlide").addEventListener("change",e=>{
+  const value = e.currentTarget.value;
+  document.getElementById("hatTransparencyField").value=value;
+  settings.hatTransparency=value;
+  generateHatted();
+});
+document.getElementById("hatTransparencyField").addEventListener("change",e=>{
+  const value = e.currentTarget.value;
+  document.getElementById("hatTransparencySlide").value=value;
+  settings.hatTransparency=value;
+  generateHatted();
+});
 
 document.getElementById("faceSizeSlide").addEventListener("change",e=>{
   const value = e.currentTarget.value;
@@ -245,6 +263,18 @@ document.getElementById("faceRotationField").addEventListener("change",e=>{
   settings.faceRotation=value;
   generateHatted();
 });
+document.getElementById("faceTransparencySlide").addEventListener("change",e=>{
+  const value = e.currentTarget.value;
+  document.getElementById("faceTransparencyField").value=value;
+  settings.faceTransparency=value;
+  generateHatted();
+});
+document.getElementById("faceTransparencyField").addEventListener("change",e=>{
+  const value = e.currentTarget.value;
+  document.getElementById("faceTransparencySlide").value=value;
+  settings.faceTransparency=value;
+  generateHatted();
+});
 
 document.getElementById("itemSizeSlide").addEventListener("change",e=>{
   const value = e.currentTarget.value;
@@ -288,6 +318,18 @@ document.getElementById("itemRotationSlide").addEventListener("change",e=>{
   settings.itemRotation=value;
   generateHatted();
 });
+document.getElementById("itemTransparencySlide").addEventListener("change",e=>{
+  const value = e.currentTarget.value;
+  document.getElementById("itemTransparencyField").value=value;
+  settings.itemTransparency=value;
+  generateHatted();
+});
+document.getElementById("itemTransparencyField").addEventListener("change",e=>{
+  const value = e.currentTarget.value;
+  document.getElementById("itemTransparencySlide").value=value;
+  settings.itemTransparency=value;
+  generateHatted();
+});
 document.getElementById("itemRotationField").addEventListener("change",e=>{
   const value = e.currentTarget.value;
   document.getElementById("itemRotationSlide").value=value;
@@ -300,7 +342,7 @@ document.getElementById("itemPosition").addEventListener("change",e=>{
 });
 
 document.getElementById('hatReset').addEventListener('click',e=>{
-  const value = 0;
+  var value = 0;
   document.getElementById("hatSizeField").value=value;
   document.getElementById("hatSizeSlide").value=value;
   settings.hatSizeOffset=value;
@@ -313,13 +355,17 @@ document.getElementById('hatReset').addEventListener('click',e=>{
   document.getElementById("hatRotationField").value=value;
   document.getElementById("hatRotationSlide").value=value;
   settings.hatRotation=value;
+  value=100;
+  document.getElementById("hatTransparencyField").value=value;
+  document.getElementById("hatTransparencySlide").value=value;
+  settings.hatTransparency=value;
   document.querySelector("#hatMirror").checked=false;
   settings.hatMirror=false;
   generateHatted();
 });
 
 document.getElementById('faceReset').addEventListener('click',e=>{
-  const value = 0;
+  let value = 0;
   document.getElementById("faceSizeField").value=value;
   document.getElementById("faceSizeSlide").value=value;
   settings.faceSizeOffset=value;
@@ -332,12 +378,16 @@ document.getElementById('faceReset').addEventListener('click',e=>{
   document.getElementById("faceRotationField").value=value;
   document.getElementById("faceRotationSlide").value=value;
   settings.faceRotation=value;
+  value=100;
+  document.getElementById("faceTransparencyField").value=value;
+  document.getElementById("faceTransparencySlide").value=value;
+  settings.faceTransparency=value;
   document.querySelector("#faceMirror").checked=false;
   settings.faceMirror=false;
   generateHatted();
 });
 document.getElementById('itemReset').addEventListener('click',e=>{
-  const value = 0;
+  let value = 0;
   document.getElementById("itemSizeField").value=value;
   document.getElementById("itemSizeSlide").value=value;
   settings.itemSizeOffset=value;
@@ -350,6 +400,10 @@ document.getElementById('itemReset').addEventListener('click',e=>{
   document.getElementById("itemRotationField").value=value;
   document.getElementById("itemRotationSlide").value=value;
   settings.itemRotation=value;
+  value=100;
+  document.getElementById("itemTransparencyField").value=value;
+  document.getElementById("itemTransparencySlide").value=value;
+  settings.itemTransparency=value;
   document.querySelector("#itemPosition").value="top";
   document.querySelector("#itemmMirror").checked=false;
   settings.itemMirror=false;
