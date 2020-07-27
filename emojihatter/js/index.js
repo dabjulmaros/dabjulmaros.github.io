@@ -101,7 +101,7 @@ function addLayer(){
     selectedLayer=getLayer(target);
     changeSelectedLayer();
   });
-  input.addEventListener('blur',e=>{
+  input.addEventListener('change',e=>{
     let layer = getLayer(e.target.parentElement);
     settings[layer].value = e.target.value;
     generateHatted();
@@ -118,7 +118,7 @@ function removeLayer(layer){
     selectedLayer--;
   if(settings.length)
     changeSelectedLayer();
-
+  generateHatted();
 }
 
 function changeSelectedLayer(){
