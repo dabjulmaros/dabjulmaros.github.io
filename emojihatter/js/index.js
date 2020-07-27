@@ -251,7 +251,7 @@ function generateMad(){
     "OffsetY":-35,
     "SizeOffset":-60,
     "Mirror":false,
-    "Rotation":0,
+    "Rotation":135,
     "Transparency":100
   },{
     "value":"🎩",
