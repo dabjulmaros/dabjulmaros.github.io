@@ -22,7 +22,7 @@ img{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transform: translate(0, 3.5rem);
+  height: 100vh;
 }
 .block {
   display:flex;
@@ -31,25 +31,35 @@ img{
 }
 .block.main{
   flex-direction: column;
-  padding: 0 2rem;
+  padding: 1rem 2rem;
+  max-width: 30rem;
+  min-width: 30rem;
 }
 .block.main span {
   font-size: 3rem;
-  cursor: pointer;
-  padding-left: .5rem;
-  height: 3rem;
-  width: 3rem;
-  transition: transform .5s;
+}
+.layer canvas{
+  border: solid 1px rgba(255,255,255,.7);
+  background: rgba(255, 255, 255, 0.3);
+}
+.layer {
+  padding: .5rem 0;
+  width: 30rem;
+}
+.layers {
+  max-height: 15rem;
+  overflow: auto;
+}
+.selected {
+  background: #ffffff22;
 }
 .rotate{
   transform: rotate(-90deg);
 }
 .block.settings {
-  height: 0;
-  overflow: hidden;
+  height: 18rem;
+  overflow: auto;
   margin: 0;
-  max-width: 30rem;
-  transition: ease-in-out .5s;
 }
 .block.settings.show{
   display: flex;
@@ -65,7 +75,7 @@ img{
 input:not(.slider),select{
   -webkit-appearance: none;
   text-align: center;
-  width: 3rem;
+  width: 8rem;
   height: 2rem;
   font-size: 2rem;
   padding: 0;
@@ -76,6 +86,9 @@ input:not(.slider),select{
   padding-bottom: .5rem;
   border-bottom: white solid 2px;
   margin:0 0 1rem 1rem;
+}
+.layer input {
+  margin: 0;
 }
 input[type=number]{
   width: 6rem;
@@ -102,6 +115,7 @@ input.spaceVertical{
 button{
   text-align: center;
   font-size: 2rem;
+  /* width: 2rem; */
   color: white;
   background: #121212;
   font-family: 'Roboto mono';
@@ -132,6 +146,29 @@ input.slider {
 
 input.slider:hover {
   opacity: 1;
+}
+.tool {
+  width: 4.3rem;
+  height: 4.3rem;
+  margin: 0 .5rem;
+}
+
+.important {
+  color: red;
+  border-color: red;
+  margin-left: 10rem;
+}
+button.important:hover{
+  color: red;
+  background: darkred;
+}
+button.important:active{
+  color: #121212;
+  background: red;
+}
+
+.block.header {
+  justify-content: left;
 }
 
 input.slider::-webkit-slider-thumb {
