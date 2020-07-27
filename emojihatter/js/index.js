@@ -47,6 +47,7 @@ function generateHatted(){
   //     navigator.clipboard.write([item]);
   // });
 }
+  
 
 document.querySelectorAll('#showSettings').forEach(node=>{
   node.addEventListener('click',e=>{
@@ -67,7 +68,14 @@ document.getElementById('removeItem').addEventListener('click',e=>{
     removeLayer(selectedLayer);
 });
 document.getElementById('resetCanvas').addEventListener('click',e=>{
-  //loop to removeLayer
+  let c = confirm("You are about to remove everything.");
+  if(c){
+    for(var layer = settings.length-1;layer>=0;layer--){
+      removeLayer(layer);
+    }
+    addLayer();
+    generateHatted();
+  }
 });
 
 document.getElementById("Mirror").addEventListener("click",e=>{
@@ -235,25 +243,35 @@ function getLayer(t){
 }
 
 function generateMad(){
+  for(var x = 0;x<3;x++)addLayer();
 
-  ctx.font = "160px sans-serif";
-  ctx.save();
-  ctx.translate(240,260);
-  ctx.fillText("🤪",0,0);
-  ctx.restore();
-  
-  ctx.font = "160px sans-serif";
-  ctx.save();
-  ctx.translate(240,133.33);
-  ctx.fillText("🎩",0,0);
-  ctx.restore();
-
-  ctx.font = '82px sans-serif';
-  ctx.save();
-  ctx.translate(101,171);
-  ctx.rotate(2.56);
-  ctx.fillText("☕",0,0);
-  ctx.restore();
-  
-  img.src=canvas.toDataURL("image/png");
+  settings=[{
+    "value":"☕",
+    "OffsetX":-105,
+    "OffsetY":-35,
+    "SizeOffset":-60,
+    "Mirror":false,
+    "Rotation":0,
+    "Transparency":100
+  },{
+    "value":"🎩",
+    "OffsetX":55,
+    "OffsetY":-50,
+    "SizeOffset":0,
+    "Mirror":false,
+    "Rotation":0,
+    "Transparency":100
+  },{
+    "value":"🤪",
+    "OffsetX":55,
+    "OffsetY":80,
+    "SizeOffset":0,
+    "Mirror":false,
+    "Rotation":0,
+    "Transparency":100
+  }];
+  layers.children[0].querySelector('input').value="☕";
+  layers.children[1].querySelector('input').value="🎩";
+  layers.children[2].querySelector('input').value="🤪";
+  generateHatted();
 }
