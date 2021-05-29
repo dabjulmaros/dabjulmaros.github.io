@@ -75,7 +75,10 @@ document.getElementById('resetCanvas').addEventListener('click',e=>{
   let c = confirm("You are about to remove everything.");
   if(c){
     resetCanvas();
+    settings.unshift(JSON.parse(JSON.stringify(settingsTemplate)));
     addLayer();
+    selectedLayer = 0;
+    changeSelectedLayer();
     generateHatted();
   }
 });
@@ -89,12 +92,39 @@ document.getElementById("Mirror").addEventListener("click",e=>{
 function addLayer(){
   const div = document.createElement('div');
   div.classList.add('block','layer');
+
   const input = document.createElement('input');
+  input.type="text";
+
+  const controls = document.createElement('div');
+  controls.classList.add('layerControl');
+
+  const layerUp = document.createElement('button');
+  layerUp.addEventListener('click',e=>{
+    event.stopPropagation();
+    pos = getLayer(document.querySelector('.selected'));
+    moveLayer(pos,-1);
+  });
+  layerUp.innerHTML=`<span class="material-icons">expand_less</span>`;
+
+  const layerDown = document.createElement('button');
+  layerDown.addEventListener('click',e=>{
+    event.stopPropagation();
+    pos = getLayer(document.querySelector('.selected'));
+    moveLayer(pos,1);
+  });
+  layerDown.innerHTML=`<span class="material-icons">expand_more</span>`;
+
+  controls.appendChild(layerUp);
+  controls.appendChild(layerDown);
+
   const divBreak = document.createElement('div');
   divBreak.classList.add('break');
-  input.type="text";
+  
   div.appendChild(divBreak);
   div.appendChild(input);
+  div.appendChild(controls)
+
   div.addEventListener('click',e=>{
     let target = e.target;
     if(target.tagName==="INPUT"){
@@ -103,11 +133,13 @@ function addLayer(){
     selectedLayer=getLayer(target);
     changeSelectedLayer();
   });
+
   input.addEventListener('input',e=>{
     let layer = getLayer(e.target.parentElement);
     settings[layer].value = e.target.value;
     generateHatted();
-  })
+  });
+
   layers.insertBefore(div,layers.childNodes[0]);
 }
 
@@ -122,6 +154,23 @@ function removeLayer(layer){
     changeSelectedLayer();
 
   generateHatted();
+}
+
+function moveLayer(pos,move){
+  const current= settings[pos];
+
+  settings.splice(pos,1);
+  settings.splice(pos+move,0,current);
+  console.log(pos+move)
+
+  selectedLayer = pos+move;
+  changeSelectedLayer()
+
+  for(var x = 0;x<settings.length;x++)
+    layers.children[x].querySelector('input').value=settings[x].value;
+
+  generateHatted();
+
 }
 
 function resetCanvas(){
@@ -252,11 +301,72 @@ function generateMad(){
     "Rotation":0,
     "Transparency":100
   }];
-  layers.children[0].querySelector('input').value="☕";
-  layers.children[1].querySelector('input').value="🎩";
-  layers.children[2].querySelector('input').value="🤪";
+  for(var x = 0;x<3;x++)
+    layers.children[x].querySelector('input').value=settings[x].value;
   generateHatted();
 }
+function openImport(){
+  document.getElementById('impexp').style.display='block';
+  document.getElementById('impexpName').innerText="Import";
+  document.getElementById('impexpText').removeAttribute('readonly','');
+  document.getElementById('importButton').style.display='block';
+  document.getElementById('impexpText').value = "";
+}
+function textImport(){
+  const value = document.getElementById('impexpText').value;
+  if(value==null || value ==''){
+    //show error cant be empty
+    console.log("empty")
+    return;
+  }
+
+  switch(typeof(value)){
+    case 'string':
+      try {
+        importSettings(JSON.parse(value));
+      } catch (e) {
+        //invalid JSON
+        console.log("badJSON")
+        return;
+      }
+      break;
+    case 'object':
+      importSettings(value);
+      break;
+    default:
+        //show error invalid type
+        console.log("invalid type")
+        return;
+  }
+  document.getElementById('impexp').style.display='none';
+}
+function openExport(){
+  document.getElementById('impexp').style.display='block';
+  document.getElementById('impexpName').innerText="Export";
+  document.getElementById('impexpText').setAttribute('readonly','');
+  document.getElementById('importButton').style.display='none';
+  document.getElementById('impexpText').value= exportSettings();
+}
+function importSettings(imprt){
+
+  for(var layer = layers.childElementCount-1;layer>=0;layer--){
+    removeLayer(layer);
+  }
+
+  settings=imprt;
+  for(var x = 0;x<settings.length;x++){
+    addLayer()
+    layers.children[0].querySelector('input').value=settings[settings.length-1-x].value
+  }
+  generateHatted();
+}
+
+function exportSettings(){
+  const exprtString = JSON.stringify(settings);
+  console.log(exprtString)
+  return exprtString;
+}
+
 
 function setOffsetX(num){
   const value = parseInt(num);

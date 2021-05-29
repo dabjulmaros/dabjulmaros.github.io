@@ -17,64 +17,88 @@
   </head>
   <body>
     <canvas id="canvas" width="400" height="400" style='display:none'></canvas>
-  <div class="controls">
-      <img id="result"  src=""/>
-  </div>
-  <div class="controls">
-    <div class="block main">
-        <div class="block header">
-            Properties:
-        </div>
-        <div class="block settings">
-            <label>&nbsp;&nbsp;&nbsp;&nbsp;Size: </label>
-            <input id="SizeSlide" type="range" class="slider" min="-160" max="250" value="0">
-            <input id="SizeField" type="number" min="-160" max="250" value="0">
-            <div class="break"></div>
-            <label>X offset: </label>
-            <input id="OffsetXSlide" value="0" type="range" class="slider" min="-400" max="400">
-            <input id="OffsetXField" value="0" type="number" min="-400" max="240">
-            <div class="break"></div>
-            <label>Y offset: </label>
-            <input id="OffsetYSlide" value="0" type="range" class="slider" min="-400" max="400">
-            <input id="OffsetYField" value="0" type="number" min="-400" max="400">
-            <div class="break"></div>
-            <label>Rotation: </label>
-            <input id="RotationSlide" value="0" type="range" class="slider" min="-180" max="180">
-            <input id="RotationField" value="0" type="number" min="-180" max="180">
-            <div class="break"></div>
-            <label>Opacity : </label>
-            <input id="TransparencySlide" value="100" type="range" class="slider" min="0" max="100">
-            <input id="TransparencyField" value="100" type="number" min="0" max="100">
-            <div class="break"></div>
-            <input type="checkbox" id="Mirror" name="Mirror" class="spaceVertical">
-            <label for="Mirror" class="spaceVertical">Mirror</label>
-            <div class="break"></div>
-            <button id="Reset" type="button" name="button">Reset Settings</button>
-            <div class="break"></div>
-            
+    <div class="controls">
+        <img id="result"  src=""/>
+        <div class="block sec">
+            <div class="block">
+                <button id="importB" onclick="openImport()">
+                    <span class="material-icons" class="icon">play_for_work</span>
+                    <span>Import</span>
+                </button>
+                <button id="exportB" onclick="openExport()">
+                    <span class="material-icons" class="icon" style="transform: rotate(180deg);">play_for_work</span>
+                    <span>Export</span>
+                </button>
+                
+            </div>
         </div>
     </div>
-    <div class="block main">
-        <div class="block header">
-            Layers:
+    <div class="controls">
+        <div class="block main">
+            <div class="block header">
+                Properties:
+            </div>
+            <div class="block settings">
+                <label>&nbsp;&nbsp;&nbsp;&nbsp;Size: </label>
+                <input id="SizeSlide" type="range" class="slider" min="-160" max="250" value="0">
+                <input id="SizeField" type="number" min="-160" max="250" value="0">
+                <div class="break"></div>
+                <label>X offset: </label>
+                <input id="OffsetXSlide" value="0" type="range" class="slider" min="-400" max="400">
+                <input id="OffsetXField" value="0" type="number" min="-400" max="240">
+                <div class="break"></div>
+                <label>Y offset: </label>
+                <input id="OffsetYSlide" value="0" type="range" class="slider" min="-400" max="400">
+                <input id="OffsetYField" value="0" type="number" min="-400" max="400">
+                <div class="break"></div>
+                <label>Rotation: </label>
+                <input id="RotationSlide" value="0" type="range" class="slider" min="-180" max="180">
+                <input id="RotationField" value="0" type="number" min="-180" max="180">
+                <div class="break"></div>
+                <label>Opacity : </label>
+                <input id="TransparencySlide" value="100" type="range" class="slider" min="0" max="100">
+                <input id="TransparencyField" value="100" type="number" min="0" max="100">
+                <div class="break"></div>
+                <input type="checkbox" id="Mirror" name="Mirror" class="spaceVertical">
+                <label for="Mirror" class="spaceVertical">Mirror</label>
+                <div class="break"></div>
+                <button id="Reset" type="button" name="button">Reset Settings</button>
+                <div class="break"></div>
+            </div>
         </div>
-        <div id="layers" class="block layers">
+        <div class="block main">
+            <div class="block header">
+                Layers:
+            </div>
+            <div id="layers" class="block layers">
+            </div>
+        </div>
+        <div class="block main">
+            <div class="block">
+                <button id="addItem" class="tool" type="button" name="button">
+                    <span class="material-icons">add</span>
+                </button>
+                <button id="removeItem" class="tool" type="button" name="button">
+                    <span class="material-icons">clear</span>
+                </button>
+                <button id="resetCanvas" class="tool important" type="button" name="button">
+                    <span class="material-icons">remove_circle_outline</span>
+                </button>
+            </div>
         </div>
     </div>
-    <div class="block main">
-        <div class="block">
-            <button id="addItem" class="tool" type="button" name="button">
-                <span class="material-icons">add</span>
+    <div id="impexp" style="display: none;">
+        <div>
+            <span id="impexpName">Import Export</span>
+            <button id="closeButton" onclick="document.getElementById('impexp').style.display='none'">
+                <span class="material-icons">
+                    close
+                </span>
             </button>
-            <button id="removeItem" class="tool" type="button" name="button">
-                <span class="material-icons">clear</span>
-            </button>
-            <button id="resetCanvas" class="tool important" type="button" name="button">
-                <span class="material-icons">remove_circle_outline</span>
-            </button>
+            <textarea id="impexpText" ></textarea>
+            <button id="importButton" onclick="textImport()">Import</button>    
         </div>
     </div>
-</div>
   </body>
   <script src="js/index.js" charset="utf-8"></script>
 </html>
