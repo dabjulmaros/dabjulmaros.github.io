@@ -456,7 +456,11 @@ function parseText(){
   for(var x = arr.length-1;x>=0;x--){
     if(arr[x]=="")
       arr.splice(x,1)
+    
+    arr[x] = parseInt(arr[x]);
+     
+    if(arr[x]<10||arr[x]>400)
+      arr.splice(x,1)
   }
-  arr = arr.map(e=>parseInt(e));
   return arr;
 }
