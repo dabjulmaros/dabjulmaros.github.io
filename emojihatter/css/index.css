@@ -281,6 +281,21 @@ input.slider::-webkit-slider-thumb {
   display: block;
   margin: 1rem auto;
 }
+#zip{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  width: 90%;
+  margin: 1rem auto 0 auto;
+}
+#zip > input {
+  flex: 0 1 55%;
+  margin: 0;
+}
+#zip > button {
+  flex: 0 1 40%;
+}
 ::-webkit-scrollbar {
   background-color:#fff;
   width:2px

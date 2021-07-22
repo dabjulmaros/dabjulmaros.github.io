@@ -14,6 +14,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/index.css">
+    <script src="js/jszip.js"></script>
+    <script src="js/saveas.js"></script>
+    <script src="js/index.js" charset="utf-8" defer></script>
   </head>
   <body>
     <canvas id="canvas" width="400" height="400" style='display:none'></canvas>
@@ -96,9 +99,10 @@
                 </span>
             </button>
             <textarea id="impexpText" ></textarea>
+            <div id="zip"><input type="text" name="textArr" id="textArr" placeholder="32,64,128">
+              <button id="exportZip" onclick="exportZip()">Save To Zip</button></div>
             <button id="importButton" onclick="textImport()">Import</button>    
         </div>
     </div>
   </body>
-  <script src="js/index.js" charset="utf-8"></script>
 </html>

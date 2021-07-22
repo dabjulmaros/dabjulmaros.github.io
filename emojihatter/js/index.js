@@ -310,6 +310,7 @@ function openImport(){
   document.getElementById('impexpName').innerText="Import";
   document.getElementById('impexpText').removeAttribute('readonly','');
   document.getElementById('importButton').style.display='block';
+  document.getElementById('zip').style.display='none';
   document.getElementById('impexpText').value = "";
 }
 function textImport(){
@@ -345,8 +346,51 @@ function openExport(){
   document.getElementById('impexpName').innerText="Export";
   document.getElementById('impexpText').setAttribute('readonly','');
   document.getElementById('importButton').style.display='none';
+  document.getElementById('zip').style.display='flex';
   document.getElementById('impexpText').value= exportSettings();
 }
+async function exportZip(){
+  var zip = new JSZip();
+  let sizes = parseText();
+  const image = document.createElement('img');
+  image.src= await canvas.toDataURL();
+  image.onload = ()=>{
+    if(sizes.length){
+      addToZip(0);
+    }
+  }
+  
+  function addToZip(index){
+    canvas.width=sizes[index];
+    canvas.height=sizes[index];
+    ctx.drawImage(image,0,0,400,400,0,0,sizes[index],sizes[index]);
+
+    console.log(`Starting blob ${sizes[index]}`)
+
+    canvas.toBlob((e)=>{
+      zip.file(`test${sizes[index]}.png`,e);
+
+      console.log(`Completed blob ${sizes[index]}`);
+      console.log(`Moving from blob ${sizes[index]}`);
+
+      if(index<sizes.length-1){
+        const next = index+1;
+        console.log(index,next);
+        addToZip(next);
+      }
+      else{
+        zip.generateAsync({type:"blob"})
+          .then(function(content) {
+              saveAs(content, "images.zip");
+              canvas.width=400;
+              canvas.height=400;
+              ctx.drawImage(image,0,0);
+          });
+      }
+    });
+  }
+}
+
 function importSettings(imprt){
 
   for(var layer = layers.childElementCount-1;layer>=0;layer--){
@@ -403,3 +447,14 @@ function setMirror(bool){
   settings[selectedLayer].hatMirror=bool;
 }
 
+function parseText(){
+  let text = document.getElementById('textArr').value;
+  text = text.replace(/[^(0-9),]*/g,'');
+  let arr = text.split(',');
+  for(var x = arr.length-1;x>=0;x--){
+    if(arr[x]=="")
+      arr.splice(x,1)
+  }
+  arr = arr.map(e=>parseInt(e));
+  return arr;
+}
