@@ -357,6 +357,8 @@ async function exportZip(){
   image.onload = ()=>{
     if(sizes.length){
       addToZip(0);
+    }else{
+      alert('Please enter a valid list of intergers separated by commas for the image sizes.')
     }
   }
   
