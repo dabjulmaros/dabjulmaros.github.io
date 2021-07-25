@@ -161,7 +161,6 @@ function moveLayer(pos,move){
 
   settings.splice(pos,1);
   settings.splice(pos+move,0,current);
-  console.log(pos+move)
 
   selectedLayer = pos+move;
   changeSelectedLayer()
@@ -367,23 +366,17 @@ async function exportZip(){
     canvas.height=sizes[index];
     ctx.drawImage(image,0,0,400,400,0,0,sizes[index],sizes[index]);
 
-    console.log(`Starting blob ${sizes[index]}`)
-
     canvas.toBlob((e)=>{
-      zip.file(`test${sizes[index]}.png`,e);
-
-      console.log(`Completed blob ${sizes[index]}`);
-      console.log(`Moving from blob ${sizes[index]}`);
+      zip.file(`emoji_${sizes[index]}.png`,e);
 
       if(index<sizes.length-1){
         const next = index+1;
-        console.log(index,next);
         addToZip(next);
       }
       else{
         zip.generateAsync({type:"blob"})
           .then(function(content) {
-              saveAs(content, "images.zip");
+              saveData(content, "images.zip");
               canvas.width=400;
               canvas.height=400;
               ctx.drawImage(image,0,0);
@@ -464,3 +457,15 @@ function parseText(){
   }
   return arr;
 }
+
+function saveData(data,fileName) {
+  var a = document.createElement("a");
+  var blob = new Blob([data], {type: "application/zip"});
+  var url = window.URL.createObjectURL(blob);
+  document.body.appendChild(a);
+  a.style = "display: none";
+  a.href = url;
+  a.download = fileName;
+  a.click();
+  setTimeout(()=>{window.URL.revokeObjectURL(url);a.remove()},1000);
+};
