@@ -1,26 +1,26 @@
-body{
-  margin:0;
-  background:#121212;
-  color:white;
-  font-size:2rem;
-  font-family: 'Roboto Mono', monospace;
+body {
+  margin: 0;
+  background: #121212;
+  color: white;
+  font-size: 2rem;
+  font-family: "Roboto Mono", monospace;
   display: flex;
   justify-content: center;
   min-height: calc(100vh - 3.5rem);
 }
 
-img{
+img {
   display: block;
   background: rgba(255, 255, 255, 0.3);
-  border:solid 1px rgba(255,255,255,.7);
-  width:400px;
-  height:400px;
-  margin:  2rem;
+  border: solid 1px rgba(255, 255, 255, 0.7);
+  width: 400px;
+  height: 400px;
+  margin: 2rem;
   user-select: none;
   -moz-user-select: none;
-  -webkit-user-drag:none;
+  -webkit-user-drag: none;
 }
-.controls{
+.controls {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,11 +28,11 @@ img{
   height: 100vh;
 }
 .block {
-  display:flex;
-  justify-content:center;
+  display: flex;
+  justify-content: center;
   flex-wrap: wrap;
 }
-.block.main{
+.block.main {
   flex-direction: column;
   padding: 1rem 2rem;
   max-width: 30rem;
@@ -44,51 +44,51 @@ img{
 .block.sec span {
   font-size: 1.5rem;
 }
-.block.sec button{
+.block.sec button {
   font-size: 0;
-  margin: 0 .5rem;
+  margin: 0 0.5rem;
 }
-.block.sec button>span:first-child{
+.block.sec button > span:first-child {
   position: relative;
-  top: .2rem;
+  top: 0.2rem;
 }
-.layerControl{
-    display: flex;
-    flex-direction: column;
-    margin: 5px;
-    display: none;
+.layerControl {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  display: none;
 }
-.block.layer.selected input{
+.block.layer.selected input {
   margin-left: calc(1rem + 40px);
 }
-.selected .layerControl{
+.selected .layerControl {
   display: flex;
 }
 .block.layer:first-child .layerControl button:first-child,
-.block.layer:last-child .layerControl button:last-child{
+.block.layer:last-child .layerControl button:last-child {
   display: none;
 }
 
-.layerControl button{
+.layerControl button {
   height: 50%;
   font-size: 1rem;
   line-height: 0;
   border-width: 1px;
   margin: 5px;
 }
-.block.layer{
+.block.layer {
   align-items: center;
 }
-.block.main .layerControl span{
+.block.main .layerControl span {
   font-size: 1rem;
 }
 
-.layer canvas{
-  border: solid 1px rgba(255,255,255,.7);
+.layer canvas {
+  border: solid 1px rgba(255, 255, 255, 0.7);
   background: rgba(255, 255, 255, 0.3);
 }
 .layer {
-  padding: .5rem 0;
+  padding: 0.5rem 0;
   width: 30rem;
 }
 .layers {
@@ -98,7 +98,7 @@ img{
 .selected {
   background: #ffffff22;
 }
-.rotate{
+.rotate {
   transform: rotate(-90deg);
 }
 .block.settings {
@@ -106,7 +106,7 @@ img{
   overflow: auto;
   margin: 0;
 }
-.block.settings.show{
+.block.settings.show {
   display: flex;
   margin: 0 0 3.5rem;
   height: 300px;
@@ -116,10 +116,11 @@ img{
   flex-basis: 100%;
   height: 0;
 }
-.block.layer.selected input{
+.block.layer.selected input {
   background: none;
 }
-input:not(.slider),select{
+input:not(.slider),
+select {
   -webkit-appearance: none;
   text-align: center;
   width: 8rem;
@@ -128,67 +129,81 @@ input:not(.slider),select{
   padding: 0;
   color: white;
   background: #121212;
-  font-family: 'Roboto mono';
+  font-family: "Roboto mono";
   border: none;
-  padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
   border-bottom: white solid 2px;
-  margin:0 0 1rem 1rem;
+  margin: 0 0 1rem 1rem;
 }
 .layer input {
   margin: 0;
 }
-input[type=number]{
+input[type="number"] {
   width: 6rem;
 }
-input[type=checkbox]{
+input[type="checkbox"] {
   -webkit-appearance: checkbox;
   cursor: pointer;
   width: 2rem;
   height: 2rem;
   margin-top: 8px;
 }
-select{
+select {
   width: auto;
   height: auto;
 }
-.spaceVertical{
+.spaceVertical {
   position: relative;
   margin: 1rem 0;
 }
-input.spaceVertical{
+input.spaceVertical {
   position: relative;
   margin: 1.5rem 1rem;
 }
-button{
+button {
   text-align: center;
   font-size: 2rem;
   /* width: 2rem; */
   color: white;
   background: #121212;
-  font-family: 'Roboto mono';
-  padding: .5rem;
+  font-family: "Roboto mono";
+  padding: 0.5rem;
   border: white solid 2px;
   cursor: pointer;
 }
-button:hover{
+button:hover {
   color: white;
   background: gray;
 }
-button:active{
+button:active {
   color: #121212;
   background: white;
 }
-
+.scrolling {
+  position: relative;
+  left: -1rem;
+}
+label.scrolling::before {
+  font-family: "Material Icons";
+  content: "swap_vert";
+  -webkit-font-feature-settings: "liga";
+  position: relative;
+  left: 0rem;
+  top: 0.3rem;
+  width: 0;
+  height: 0;
+  opacity: 0.2;
+}
 input.slider {
   -webkit-appearance: none;
-  height: .5rem;
+  height: 0.5rem;
   margin-top: 1.3rem;
   border-radius: 5px;
   background: #ffff;
   outline: none;
   opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
 }
 
 input.slider:hover {
@@ -197,7 +212,7 @@ input.slider:hover {
 .tool {
   width: 4.3rem;
   height: 4.3rem;
-  margin: 0 .5rem;
+  margin: 0 0.5rem;
 }
 
 .important {
@@ -205,11 +220,11 @@ input.slider:hover {
   border-color: red;
   margin-left: 10rem;
 }
-button.important:hover{
+button.important:hover {
   color: red;
   background: darkred;
 }
-button.important:active{
+button.important:active {
   color: #121212;
   background: red;
 }
@@ -228,13 +243,13 @@ input.slider::-webkit-slider-thumb {
   cursor: pointer;
 }
 
-#impexp{
+#impexp {
   position: absolute;
   background: #12121250;
   width: 100%;
   height: 100%;
 }
-#impexp > div{
+#impexp > div {
   position: absolute;
   background: #121212;
   border: solid 1px white;
@@ -243,14 +258,14 @@ input.slider::-webkit-slider-thumb {
   width: 50%;
   max-width: 50ch;
   height: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   padding: 10px;
 }
 
-#closeButton span{
+#closeButton span {
   font-size: 3rem;
 }
-#impexp #closeButton{
+#impexp #closeButton {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -259,13 +274,13 @@ input.slider::-webkit-slider-thumb {
   font-size: 0;
 }
 
-#impexpName{
+#impexpName {
   color: white;
   margin: 0 auto;
   text-align: center;
   display: block;
 }
-#impexpText{
+#impexpText {
   background: #12121220;
   border: solid 1px #babac0;
   resize: none;
@@ -274,14 +289,14 @@ input.slider::-webkit-slider-thumb {
   margin: 1rem auto 0 auto;
   height: 65%;
   color: white;
-  font-family: 'Roboto mono',monospace;
+  font-family: "Roboto mono", monospace;
 }
 #importButton {
   color: white;
   display: block;
   margin: 1rem auto;
 }
-#zip{
+#zip {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -297,15 +312,19 @@ input.slider::-webkit-slider-thumb {
   flex: 0 1 40%;
 }
 ::-webkit-scrollbar {
-  background-color:#fff;
-  width:2px
+  background-color: #fff;
+  width: 2px;
 }
-::-webkit-scrollbar:hover {width:4px}
-::-webkit-scrollbar-button {display:none}
+::-webkit-scrollbar:hover {
+  width: 4px;
+}
+::-webkit-scrollbar-button {
+  display: none;
+}
 ::-webkit-scrollbar-track {
-  background-color:#121212
+  background-color: #121212;
 }
 ::-webkit-scrollbar-thumb {
-  background-color:#babac0;
-  border-radius:16px;
+  background-color: #babac0;
+  border-radius: 16px;
 }
