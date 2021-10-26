@@ -1,12 +1,3 @@
-/**
- * TODO:
- * 1-- Detect if text in fields are emojis or text
- *      if text is detected show controls to customize text
- *
- * 2-- Add custom emoji keyboard
- *      Have it support search and recently used emojis...
- *      Just like the system emoji keyboard... but worse
- */
 //-----------------------------//
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");

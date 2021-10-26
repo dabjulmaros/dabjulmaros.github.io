@@ -187,6 +187,7 @@ label.scrolling::before {
   font-family: "Material Icons";
   content: "swap_vert";
   -webkit-font-feature-settings: "liga";
+  font-feature-settings: "liga";
   position: relative;
   left: 0rem;
   top: 0.3rem;
