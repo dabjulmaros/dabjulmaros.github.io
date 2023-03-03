@@ -1,42 +1,108 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Im bored</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
-    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
-    <link rel="manifest" href="icon/site.webmanifest">
-    <style media="screen">
-    body{
-      position: absolute;
-      top:0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background-color: #121212;
-      font-family: 'IBM Plex Mono', monospace;
-      overflow: hidden;
-      color:white;
-      text-transform: uppercase;
-      margin: auto;
-      width:  max-content;
-      height: max-content;
-    }
-    body a{
-      color:white;
-    }
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="icon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="icon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="icon/favicon-16x16.png"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link rel="manifest" href="icon/site.webmanifest" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+      }
     </style>
+    <script src="script.js" defer></script>
   </head>
   <body>
-    <center>
-      <h1>Welcome 😁</h1>
-      <h2>Here is where I keep my toy apps and random things.</h2>
-      <h5>Still working on <a href="/snake">snake</a> 🐍</h5>
-      <h5>Am i working on this? <a href="/matrix">matrix</a> 👩‍💻👨‍💻</h5>
-      <h5>Put hats on emojis, cause why not. <a href="/emojihatter">Emoji Hatter</a> 🎩(not hater)</h5>
-      <h5>Stylish avatars <a href="/micahavatars/">DiceBear Micah Stylist</a> 🧑 powered by <a href="https://avatars.dicebear.com/" target="_blank" rel="noreferrer">dicebear</a></h5>
-    </center>
+    <div class="content">
+      <h1 style="margin: 0 1rem">Welcome 😁</h1>
+      <h2 style="margin: 2rem 1rem">
+        Here is where I keep my toy apps and random things.
+      </h2>
+      <div class="cards">
+        <div class="card">
+          <canvas data="🐍" width="200" height="200"></canvas>
+          <a href="/snake"><h3>Snake</h3></a>
+          <div>Simple Snake game</div>
+        </div>
+        <div class="card">
+          <canvas data="👨‍💻" width="200" height="200"></canvas>
+          <a href="/matrix"><h3>Matrix Rain</h3></a>
+          <div>cause obviosly I had to make one</div>
+        </div>
+        <div class="card">
+          <canvas data="🎩" width="200" height="200"></canvas>
+          <a href="/emojihatter"><h3>Emoji Hatter</h3></a>
+          <div>Allows to put hats on emojis.</div>
+        </div>
+        <div class="card">
+          <canvas data="🧑" width="200" height="200"></canvas>
+          <a href="/micahavatars/"><h3>Micah Stylist</h3></a>
+          <div>
+            Stylish avatars powered by
+            <a
+              href="https://avatars.dicebear.com/"
+              target="_blank"
+              rel="noreferrer"
+              >dicebear</a
+            >.
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="sass">
+        <span class="material-symbols-outlined" style="font-size: 2rem">
+          info
+        </span>
+        <div>
+          Thanks github for the free hosting... in return you can have my
+          spagetti and meatballs.
+          <br />
+          Also Google fonts for the "free"
+          <a
+            href="https://fonts.google.com/specimen/IBM+Plex+Mono"
+            target="_blank"
+            rel="noreferrer"
+            >IBM Plex font</a
+          >.
+          <br />
+          Also also Google again for the free
+          <a
+            href="https://fonts.google.com/icons"
+            target="_blank"
+            rel="noreferrer"
+            >Material</a
+          >
+          icons.
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

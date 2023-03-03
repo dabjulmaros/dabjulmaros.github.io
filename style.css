@@ -1,0 +1,107 @@
+body {
+  background-color: #1a1a1a;
+  font-family: "IBM Plex Mono", monospace;
+  color: white;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  min-height: 100dvh;
+}
+.content {
+  font-weight: bold;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body a {
+  color: rgb(255,200,61);
+  text-decoration: none;
+  z-index: 0;
+  background: #0c0c0c;
+}
+.sass {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+}
+.sass:hover div {
+  display: block;
+}
+.sass > div {
+  display: none;
+  position: absolute;
+  line-height: 2rem;
+  bottom: 0;
+  right: 0;
+  width: 200px;
+  background: #0c0c0c;
+  padding: 2rem;
+  border: 5px solid white;
+  border-radius: 1rem;
+  z-index: 3;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 2rem;
+}
+.card {
+  height: 250px;
+  width: 250px;
+  border: 5px solid white;
+  background: #0c0c0c;
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card canvas {
+  height: 100%;
+  width: 100%;
+  opacity: 0.7;
+  position: absolute;
+  left: 0;
+  top: 0;
+  filter: grayscale(1);
+  transition: filter 0.5s ease-in-out;
+}
+.card h3 {
+  padding: .5rem 1rem;
+  margin: 0;
+}
+.card div {
+  position: absolute;
+  bottom: -2rem;
+  right: 0;
+  left: 0;
+  margin: 0 1rem;
+  opacity: 0;
+  transition: bottom 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.card:hover div {
+  bottom: 2rem;
+  opacity: 1;
+}
+.card:hover canvas {
+  filter: grayscale(0);
+}
+@media only screen and (max-width: 600px) {
+  body{
+    padding: 2rem;
+  }
+    .cards {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+      gap: 1rem;
+    }
+  
+}
