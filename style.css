@@ -30,25 +30,35 @@ body a {
   right: 1rem;
 }
 .sass:hover div {
-  display: block;
   opacity: 1;
-  /* width:200px; */
+  width:200px;
+  padding: 2rem;
+  border: 5px solid white;
+  transition: opacity .3s linear,width .3s linear,padding 0s linear, border 0s linear;
 }
-.sass > div {
-  display: none;
+.sass > div{
   position: absolute;
   line-height: 2rem;
   bottom: 0;
   right: 0;
-  width: 200px;
+  width: 0;
+  height: 36.5ch;
   background: #0c0c0c;
-  padding: 2rem;
-  border: 5px solid white;
+  padding: 0;
+  border: 0px solid white;
+  transition: opacity .3s linear,width .3s linear,padding 0s linear 0.3s, border 0s linear .3s;
   border-radius: 1rem;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.sass > div > ul{
   z-index: 3;
-  /* opacity: 0; */
-  /* overflow: hidden; */
-  /* transition: opacity .3s linear,width .3s linear; */
+  position: absolute;
+  width: 200px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .cards {
