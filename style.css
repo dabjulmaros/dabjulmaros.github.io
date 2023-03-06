@@ -29,6 +29,10 @@ body a {
   z-index: 0;
   background: #0c0c0c;
 }
+body a :hover {
+  color: #0c0c0c;
+  background: rgb(255, 200, 60);
+}
 .sass {
   position: fixed;
   bottom: 1rem;
