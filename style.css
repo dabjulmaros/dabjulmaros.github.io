@@ -9,7 +9,12 @@ body {
   justify-content: center;
   margin: 0;
   min-height: 100dvh;
+  background-image: radial-gradient(    rgba(255, 200, 60,.5) 9%,    transparent 9%  );
+  background-position: 0% 0%;
+  background-size: 5vmin 5vmin;
+  transition: background-position .3s ease-in-out;
 }
+
 .content {
   font-weight: bold;
   text-align: center;
@@ -19,7 +24,7 @@ body {
   padding: 1rem;
 }
 body a {
-  color: rgb(255,200,60);
+  color: rgb(255, 200, 60);
   text-decoration: none;
   z-index: 0;
   background: #0c0c0c;
@@ -31,12 +36,13 @@ body a {
 }
 .sass:hover div {
   opacity: 1;
-  width:200px;
+  width: 200px;
   padding: 2rem;
   border: 5px solid white;
-  transition: opacity .3s linear,width .3s linear,padding 0s linear, border 0s linear;
+  transition: opacity 0.3s linear, width 0.3s linear, padding 0s linear,
+    border 0s linear;
 }
-.sass > div{
+.sass > div {
   position: absolute;
   line-height: 2rem;
   bottom: 0;
@@ -46,13 +52,14 @@ body a {
   background: #0c0c0c;
   padding: 0;
   border: 0px solid white;
-  transition: opacity .3s linear,width .3s linear,padding 0s linear 0.3s, border 0s linear .3s;
+  transition: opacity 0.3s linear, width 0.3s linear, padding 0s linear 0.3s,
+    border 0s linear 0.3s;
   border-radius: 1rem;
   opacity: 0;
   overflow: hidden;
 }
 
-.sass > div > ul{
+.sass > div > ul {
   z-index: 3;
   position: absolute;
   width: 200px;
@@ -76,13 +83,14 @@ body a {
   position: relative;
   display: flex;
   align-items: center;
+  background-color: #1a1a1a;
   justify-content: center;
 }
 .card canvas {
   height: 100%;
   width: 100%;
   opacity: 0.7;
-  background: rgb(255,200,60);
+  background: rgb(255, 200, 60);
   filter: grayscale(1);
   transition: filter 0.7s ease-in-out;
   position: absolute;
@@ -90,7 +98,7 @@ body a {
   top: 0;
 }
 .card h3 {
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   margin: 0;
 }
 .card div {
@@ -107,17 +115,44 @@ body a {
   bottom: 2rem;
   opacity: 1;
 }
-.card:hover canvas{
+.card:hover canvas {
   filter: grayscale(0);
 }
-@media only screen and (max-width: 600px) {
-  body{
-    padding: 2rem;
-  }
-    .cards {
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr;
-      gap: 1rem;
-    }
-  
+
+body:hover:has(.card:nth-child(1):hover){
+  background-position: -1% -1%;
 }
+body:hover:has(.card:nth-child(2):hover){
+  background-position: 1% -1%;
+}
+body:hover:has(.card:nth-child(3):hover){
+  background-position: -1% 1%;
+}
+body:hover:has(.card:nth-child(4):hover){
+  background-position: 1% 1%;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    padding: 2rem;
+    background-size: 10vmin 10vmin;
+  }
+  .cards {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 1rem;
+  }
+  body:hover:has(.card:nth-child(1):hover){
+    background-position: 0% -2%;
+  }
+  body:hover:has(.card:nth-child(2):hover){
+    background-position: 0% -1%;
+  }
+  body:hover:has(.card:nth-child(3):hover){
+    background-position: 0% 1%;
+  }
+  body:hover:has(.card:nth-child(4):hover){
+    background-position: 0% 2%;
+  }
+}
+
