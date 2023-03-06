@@ -16,9 +16,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 1rem;
 }
 body a {
-  color: rgb(255,200,61);
+  color: rgb(255,200,60);
   text-decoration: none;
   z-index: 0;
   background: #0c0c0c;
@@ -30,6 +31,8 @@ body a {
 }
 .sass:hover div {
   display: block;
+  opacity: 1;
+  /* width:200px; */
 }
 .sass > div {
   display: none;
@@ -37,12 +40,15 @@ body a {
   line-height: 2rem;
   bottom: 0;
   right: 0;
-  width: 200px;
+  width: 0;
   background: #0c0c0c;
   padding: 2rem;
   border: 5px solid white;
   border-radius: 1rem;
   z-index: 3;
+  /* opacity: 0; */
+  /* overflow: hidden; */
+  /* transition: opacity .3s linear,width .3s linear; */
 }
 
 .cards {
@@ -55,10 +61,9 @@ body a {
   height: 250px;
   width: 250px;
   border: 5px solid white;
-  background: #0c0c0c;
-  position: relative;
   border-radius: 1rem;
   overflow: hidden;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -67,11 +72,12 @@ body a {
   height: 100%;
   width: 100%;
   opacity: 0.7;
+  background: rgb(255,200,60);
+  filter: grayscale(1);
+  transition: filter 0.7s ease-in-out;
   position: absolute;
   left: 0;
   top: 0;
-  filter: grayscale(1);
-  transition: filter 0.5s ease-in-out;
 }
 .card h3 {
   padding: .5rem 1rem;
@@ -91,7 +97,7 @@ body a {
   bottom: 2rem;
   opacity: 1;
 }
-.card:hover canvas {
+.card:hover canvas{
   filter: grayscale(0);
 }
 @media only screen and (max-width: 600px) {
