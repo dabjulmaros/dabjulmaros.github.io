@@ -23,13 +23,13 @@ body {
   align-items: center;
   padding: 1rem;
 }
-body a {
+a{
   color: rgb(255, 200, 60);
   text-decoration: none;
   z-index: 0;
   background: #0c0c0c;
 }
-body a :hover {
+a:hover {
   color: #0c0c0c;
   background: rgb(255, 200, 60);
 }
