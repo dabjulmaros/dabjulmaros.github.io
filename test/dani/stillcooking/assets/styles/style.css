@@ -96,7 +96,7 @@ a::before {
   overflow: hidden;
 }
 .section a::before{
-  border-radius:2rem;
+  /* border-radius:2rem; */
   left: 0;
 }
 
