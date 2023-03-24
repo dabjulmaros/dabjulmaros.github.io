@@ -1,0 +1,198 @@
+@import url(fontawesome.min.css);
+
+html {
+  --primary-color: 80, 82, 181;
+  --secondary-color: #a425a0;
+  --font-color: #efefef;
+}
+
+body {
+  margin: 0 auto;
+  font-family: monospace;
+  color: var(--font-color);
+  background-color: rgb(var(--primary-color));
+  max-width: 1200px;
+}
+
+.icon::before {
+  font-size: 2.5em;
+  font-family: "Font Awesome 5 Free";
+}
+
+.icon.brands::before {
+  font-size: 2.5em;
+  font-family: "Font Awesome 5 Brands";
+}
+
+.section {
+  background-image: var(--primary-color);
+  padding: 2rem;
+}
+
+.nav img {
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  z-index: 0;
+  left: -1.6rem;
+}
+.nav div {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.nav {
+  display: flex;
+  width: calc(100vw - 20rem);
+  /*! margin: 0 auto; */
+  background-color: var(--secondary-color);
+  /*! max-width: 1000px; */
+  justify-content: space-between;
+  padding: 0px 10rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 5rem;
+  /*! margin-bottom: 5rem; */
+  top: 0;
+}
+.nav h1 {
+  z-index: 1;
+  font-size: 2.3rem;
+  margin: 1rem 0;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+/* 
+li:nth-child(4){
+  border-right: none;
+}
+*/
+
+a {
+  font-size: 1.2rem;
+  padding: 0.2rem 0.5rem;
+}
+
+a::before {
+  content: " ";
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  background-color: var(--font-color);
+  transition: width 0.5s;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.nav li a {
+  border-right: solid 1px var(--font-color);
+  position: relative;
+}
+.nav li:hover a:before {
+  width: 100%;
+}
+
+.nav a span.reverse {
+  position: absolute;
+  mix-blend-mode: normal;
+  color: black;
+  z-index: 0;
+}
+.nav a span {
+  mix-blend-mode: difference;
+  position: relative;
+  z-index: 2;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  max-width: calc(30% - 1rem);
+  min-width: 300px;
+  padding: 1.1rem;
+  /*! border: solid 1px var(--font-color); */
+  border-radius: 0.5rem;
+  position: relative;
+  background: rgba(200, 200, 200, 0.3);
+  padding-bottom: 3rem;
+  margin: 0.5rem;
+  transition: transform 0.5s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  /*! box-shadow: -13px 11px 25px 1px rgba(255,255,255,.3); */
+}
+.card h3 {
+  font-size: 1.5rem;
+  margin: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+.card .icon {
+  position: absolute;
+  right: calc(50% - 1rem);
+  bottom: 3.5rem;
+  transform: scale(3);
+  transition: transform 0.5s, right 0.5s, bottom 0.5s;
+  width: 2rem;
+  height: 2rem;
+  background: var(--font-color);
+  border-radius: 100%;
+}
+/* TODO: Make sure all card icons are the same */
+.card .icon:before {
+  font-size: 1.2rem;
+  line-height: 2rem;
+  width: 2rem;
+  display: block;
+  text-align: center;
+  color: rgba(var(--primary-color), 0.7);
+}
+.card .icon.icon.brands:before {
+  font-size: 2rem;
+  color: var(--font-color);
+}
+.card p {
+  opacity: 0;
+  transition: opacity 0.5s;
+  font-size: 1rem;
+}
+.card:hover p {
+  opacity: 1;
+}
+.card:hover .icon {
+  transform: scale(1.2);
+  bottom: 1.5rem;
+  right: 1.5rem;
+  opacity: 0.7;
+}
+
+.hero {
+  margin-top: 5rem;
+}
+.footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.footer div {
+  padding-left: 4rem;
+  border-left: solid 1px var(--font-color);
+}
+.footer span {
+  display: block;
+}
