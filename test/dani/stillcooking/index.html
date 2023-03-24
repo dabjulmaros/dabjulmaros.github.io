@@ -1,78 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Test lively site</title>
-  <link rel="stylesheet" href="./assets/styles/style.css">
-  <script src="./assets/scripts/script.js"></script>
-</head>
-<body>
-  <div class="nav">
-    <div>
-      <img src="./assets/images/logo.png" alt="Logo"/>
-      <h1>Lively Wallpaper</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test lively site</title>
+    <link rel="stylesheet" href="./assets/styles/style.css" />
+    <script src="./assets/scripts/script.js"></script>
+  </head>
+  <body>
+    <div class="nav">
+      <div>
+        <img src="./assets/images/logo.png" alt="Logo" />
+        <h1>Lively Wallpaper</h1>
+      </div>
+      <div>
+        <ul>
+          <li>
+            <a><span class="reverse">Welcome</span><span>Welcome</span></a>
+          </li>
+          <li>
+            <a><span class="reverse">Features</span><span>Features</span></a>
+          </li>
+          <li>
+            <a><span class="reverse">Gallery</span><span>Gallery</span></a>
+          </li>
+          <li>
+            <a><span class="reverse">Download</span><span>Download</span></a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div>
-      <ul>
-        <li><a>
-          <span class="reverse">Welcome</span>
-          <span>Welcome</span></a></li>
-        <li><a><span>Features</span></a></li>
-        <li><a><span>Gallery</span></a></li>
-        <li><a><span>Download</span></a></li>
-      </ul>
+    <!-- Animated Wallpaper -->
+    <div class="section hero section-1"></div>
+    <!-- Wallpaper Controls -->
+    <div class="section wallpaperControls section-2"></div>
+    <!-- Info Cards  -->
+    <div class="section cards section-3">
+      <div class="card">
+        <h3>Free & Open Source</h3>
+        <p>
+          Lively is Free and Open Source Software, no features are behind a
+          paywall; everything is made for the community with love <3.
+        </p>
+        <span class="fa icon brands fa-github" style="background: none"></span>
+      </div>
+      <div class="card">
+        <h3>Silent</h3>
+        <p>
+          Wallpaper playback pauses when fullscreen applications/games are
+          running (~0% resource usage.)
+        </p>
+        <span class="fa icon fa-power-off"></span>
+      </div>
+      <div class="card">
+        <h3>User Customization</h3>
+        <p>
+          Use dynamic & interactive webpages, 3D applications, audio visualisers
+          as wallpapers.
+        </p>
+        <span class="fa icon fa-palette"></span>
+      </div>
+      <div class="card">
+        <h3>Multiple Screens</h3>
+        <p>
+          Supports multiple monitors, HiDPI resolutions, Ultrawide aspect ratios
+          and many more.
+        </p>
+        <span class="fa icon fa-desktop"></span>
+      </div>
+      <div class="card">
+        <h3>Simple</h3>
+        <p>
+          User experience focused, Just drop videos & webpages into lively
+          window to set as wallpaper.
+        </p>
+        <span class="fa icon fa-hands-helping"></span>
+      </div>
+      <div class="card">
+        <h3>Feature Packed</h3>
+        <p>
+          Stream wallpapers, Automatic tile generation, Multiple video players,
+          Performance settings and more...
+        </p>
+        <span class="fa icon fa-gem"></span>
+      </div>
     </div>
-  </div>
-  <!-- Animated Wallpaper -->
-  <div class="section hero section-1"></div>
-  <!-- Wallpaper Controls -->
-  <div class="section wallpaperControls section-2"></div> 
-   <!-- Info Cards  -->
-  <div class="section cards section-3">
-    <div class="card">
-      <h3>Free & Open Source</h3>
-      <p>Lively is Free and Open Source Software, no features are behind a paywall; everything is made for the community with love <3. </p>
-      <span class="fa icon brands fa-github" style="background:none"></span>
+    <!-- Video Gallery And Images -->
+    <div class="section gallery section-4"></div>
+    <!-- Download, Info, Contact -->
+    <div class="section information section-5"></div>
+    <div class="footer">
+      <span>All rights reserved: Rocksdanister.</span>
+      <div>
+        <span>Thanks Font-Awesome for the icons.</span>
+        <span>And special thanks to you for visiting my site 😊</span>
+      </div>
     </div>
-    <div class="card">
-      <h3>Silent</h3>
-      <p>Wallpaper playback pauses when fullscreen applications/games are running (~0% resource usage.) </p>
-      <span class="fa icon fa-power-off"></span>
-    </div>
-    <div class="card">
-      <h3>User Customization</h3>
-      <p>Use dynamic & interactive webpages, 3D applications, audio visualisers as wallpapers. </p>
-      <span class="fa icon fa-palette"></span>
-    </div>
-    <div class="card">
-      <h3>Multiple Screens</h3>
-      <p>Supports multiple monitors, HiDPI resolutions, Ultrawide aspect ratios and many more. </p>
-      <span class="fa icon fa-desktop"></span>
-    </div>
-    <div class="card">
-      <h3>Simple</h3>
-      <p>User experience focused, Just drop videos & webpages into lively window to set as wallpaper. </p>
-      <span class="fa icon fa-hands-helping"></span>
-    </div>
-    <div class="card">
-      <h3>Feature Packed</h3>
-      <p>Stream wallpapers, Automatic tile generation, Multiple video players, Performance settings and more... </p>
-      <span class="fa icon fa-gem"></span>
-    </div>
-  </div>
-  <!-- Video Gallery And Images -->
-  <div class="section gallery section-4"></div>
-  <!-- Download, Info, Contact -->
-  <div class="section information section-5"></div>
-  <div class="footer">
-    <span>All rights reserved: Rocksdanister.</span>
-    <div>
-      <span>Thanks Font-Awesome for the icons.</span>
-      <span>And special thanks to you for visiting my site 😊</span>
-    </div>
-  </div>
-  
-</body>
+  </body>
 </html>
