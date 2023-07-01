@@ -1,5 +1,6 @@
 let sunrise = 8;
 let sunset = 20;
+let oldDay, oldDate, oldTime;
 let date = new Date();
 const hour = date.getHours();
 let backgroundImage = "";
@@ -19,16 +20,29 @@ image.addEventListener('load', function () {
 image.src = backgroundImage;
 
 
-const timeOptions = { hour: '2-digit', minute: '2-digit' };
+const timeOptions = { hour: '2-digit', minute: '2-digit', hour12:true };
 const dateOptions = { month: 'short', year: 'numeric', day: '2-digit' };
 const dayOptions = { weekday: 'long' };
 
 function setDate() {
   date = new Date();
-  document.querySelector('.time').innerText = date.toLocaleDateString(undefined, timeOptions).split(',')[1];
-  document.querySelector('.date').innerText = date.toLocaleDateString(undefined, dateOptions);
-  document.querySelector('.day').innerText = date.toLocaleDateString(undefined, dayOptions);
+  const newtTime = date.toLocaleDateString(undefined, timeOptions).split(',')[1];
+  const newDate = date.toLocaleDateString(undefined, dateOptions);
+  const newDay = date.toLocaleDateString(undefined, dayOptions);
+
+  if (newtTime !== oldTime) {
+    document.querySelector('.time').innerText = newtTime;
+    oldTime = newtTime
+  }
+  if (newDate !== oldDate) {
+    document.querySelector('.date').innerText = newDate;
+    oldDate = newDate
+  }
+  if (newDay !== oldDay) {
+    document.querySelector('.day').innerText = newDay;
+    oldDay = newDay
+  }
 }
 
-setInterval(()=>setDate,1000);
+setInterval(() => setDate(), 30 * 1000);
 setDate();
