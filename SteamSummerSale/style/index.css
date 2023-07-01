@@ -1,7 +1,7 @@
 :root {
   --repeat: 0.3s; /* animation timing */
   --height: 6px; /* total pixel height from scanline top to bottom of animation */
-  --area: 66%; /* percentage of height the scanline covers */
+  --area: 33%; /* percentage of height the scanline covers */
 }
 body {
   margin: 0;
@@ -13,7 +13,7 @@ div {
 .background {
   background-repeat: repeat;
   background-position: center top;
-  background-image: url("/assets/Steam_Summer_Sale_pattern-04-day_lighter.gif");
+  background-image: url("../assets/Steam_Summer_Sale_pattern-04-day_lighter.gif");
   background-color: #010404;
 }
 .hero {
@@ -24,7 +24,6 @@ div {
   left: 0;
   background-position: center top;
   background-repeat: no-repeat;
-  background-image: url("/assets/home_header_bg_day_japanese.gif");
 }
 
 span {
@@ -32,12 +31,12 @@ span {
   height: 95px;
   display: block;
   position: absolute;
-  top: 181.7px;
+  top: 179px;
   left: 50%;
   transform: translate(-60%);
 }
 
-.day {
+body.day span.scan {
   background: linear-gradient(
     to bottom,
     #305791,
@@ -46,18 +45,32 @@ span {
     #4b619b
   );
 }
+body.night span.scan {
+  background: linear-gradient(    to bottom,#643c93 var(--area),    #643c93,    #41319b,    #41319b var(--area)      );
+}
 
-.scan {
-  animation: scan var(--repeat) linear infinite;
+body.day span.scan,
+body.night span.scan {
   transform-origin: center;
   background-size: 100% var(--height);
   background-position-y: 0px;
   filter: blur(0.3px);
 }
-
+body.night span.text{
+  color:red;
+}
+body.day span.text{
+  color:green;
+}
+.animate {
+  animation: scan var(--repeat) linear infinite;
+}
 @keyframes scan {
   0% {
     background-position-y: 0px;
+  }
+  70%{
+    background-position-y: calc(var(--height) - 1px / 2);
   }
   100% {
     background-position-y: var(--height);
