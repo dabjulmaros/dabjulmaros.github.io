@@ -73,10 +73,11 @@ a:hover {
 }
 
 .cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 900px;
+  justify-content: space-around;
+  align-content: center;
 }
 .card {
   height: 250px;
@@ -89,6 +90,7 @@ a:hover {
   align-items: center;
   background-color: #1a1a1a;
   justify-content: center;
+  margin: 1rem;
 }
 .card canvas {
   height: 100%;
@@ -127,16 +129,19 @@ body:hover:has(.card:nth-child(1):hover){
   background-position: -1% -1%;
 }
 body:hover:has(.card:nth-child(2):hover){
-  background-position: 1% -1%;
+  background-position: 0% -1%;
 }
 body:hover:has(.card:nth-child(3):hover){
-  background-position: -1% 1%;
+  background-position:1% -1%;
 }
 body:hover:has(.card:nth-child(4):hover){
-  background-position: 1% 1%;
+  background-position: -.5% 1%;
+}
+body:hover:has(.card:nth-child(5):hover){
+  background-position: .5% 1%;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 950px) {
   body {
     padding: 2rem;
     background-size: 10vmin 10vmin;
@@ -147,15 +152,38 @@ body:hover:has(.card:nth-child(4):hover){
     gap: 1rem;
   }
   body:hover:has(.card:nth-child(1):hover){
+    background-position: -1% -1%;
+  }
+  body:hover:has(.card:nth-child(2):hover){
+    background-position: 1% -1%;
+  }
+  body:hover:has(.card:nth-child(3):hover){
+    background-position: -1% 0%;
+  }
+  body:hover:has(.card:nth-child(4):hover){
+    background-position: 1% 0%;
+  }
+  body:hover:has(.card:nth-child(5):hover){
+    background-position: 0% -1%;
+  }
+}
+
+
+@media only screen and (max-width: 750px) {
+ 
+  body:hover:has(.card:nth-child(1):hover){
     background-position: 0% -2%;
   }
   body:hover:has(.card:nth-child(2):hover){
     background-position: 0% -1%;
   }
   body:hover:has(.card:nth-child(3):hover){
-    background-position: 0% 1%;
+    background-position: 0% 0%;
   }
   body:hover:has(.card:nth-child(4):hover){
+    background-position: 0% 1%;
+  }
+  body:hover:has(.card:nth-child(5):hover){
     background-position: 0% 2%;
   }
 }
