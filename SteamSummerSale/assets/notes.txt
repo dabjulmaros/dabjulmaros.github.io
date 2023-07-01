@@ -1,0 +1,8 @@
+Steam Summer Sale 2023 Art
+
+Hero day  : https://cdn.cloudflare.steamstatic.com/steam/clusters/sale_autumn2019_assets/54b5034d397baccb93181cc6/home_header_bg_day_english.gif?t=1688069940
+Hero night: https://cdn.cloudflare.steamstatic.com/steam/clusters/sale_autumn2019_assets/54b5034d397baccb93181cc6/home_header_bg_night_english.gif?t=1688069940
+
+background repat : https://cdn.cloudflare.steamstatic.com/store/promo/summer2023/Steam_Summer_Sale_pattern-04-day_lighter.gif?v=2
+
+local copies are to not request them off steam/cloud flare servers
