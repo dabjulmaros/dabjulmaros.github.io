@@ -1,12 +1,29 @@
+:root{
+  --daySecondary: #4b619b;
+  --dayPrimary: #305791;
+  --dayColor: #46bbf6;
+  --nightColor: #a57dff;
+  --nightSecundary:#643c93;
+  --nightPrimary:#41319b;
+  --scenePrimary:"";
+  --sceneSecundary:"";
+  --sceneColor:"";
+}
+
+body.night {
+  --sceneColor: var(--nightColor);
+  --scenePrimary: var(--nightPrimary);
+  --sceneSecundary: var(--nightSecundary);
+}
+body.day {
+  --sceneColor: var(--dayColor);
+  --scenePrimary: var(--dayPrimary);
+  --sceneSecundary: var(--daySecondary);
+}
 body {
   margin: 0;
   font-family: "CuteCubes";
-}
-body.night {
-  color: #a57dff;
-}
-body.day {
-  color: #46bbf6;
+  color: var(--sceneColor);
 }
 .hero,
 .background {
@@ -52,47 +69,80 @@ body.day {
 .date {
   font-size: 1.5rem;
 }
-body.day span.scan {
-  background: linear-gradient(
-    to bottom,
-    #4b619b,
-    #4b619b 2px,
-    #305791,
-    #305791 3px
-  );
-}
-body.night span.scan {
-  background: linear-gradient(
-    to bottom,
-    #643c93,
-    #643c93 2px,
-    #41319b,
-    #41319b 3px
-  );
-}
 
 body.day span.scan,
 body.night span.scan {
   transform-origin: center;
+  background: linear-gradient(
+    to bottom,
+    var(--sceneSecundary),
+    var(--sceneSecundary) 2px,
+    var(--scenePrimary),
+    var(--scenePrimary) 3px
+  );
   background-size: 100% 6px;
   background-position-y: 0px;
   filter: blur(0.3px);
 }
 .animate {
-  animation: scan .3s linear infinite 27ms;
+  animation: scan 0.3s linear infinite 27ms;
 }
+
+.sass {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  opacity: 0.3;
+}
+.sass:hover {
+  opacity: 1;
+}
+.sass:hover div {
+  opacity: 1;
+  width: 300px;
+  padding: 2rem;
+  border: 5px solid var(--sceneSecundary);
+  transition: opacity 0.3s linear, width 0.3s linear, padding 0s linear,
+    border 0s linear;
+}
+.sass > div {
+  position: absolute;
+  line-height: 2rem;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 10ch;
+  background: var(--scenePrimary);
+  padding: 0;
+  border: 0px solid var(--sceneSecundary);
+  transition: opacity 0.3s linear, width 0.3s linear, padding 0s linear 0.3s,
+    border 0s linear 0.3s;
+  border-radius: 1rem;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.sass > div > ul {
+  z-index: 3;
+  position: absolute;
+  width: 300px;
+  margin: 0;
+  padding: 0; 
+  list-style: none;
+}
+
 @keyframes scan {
   0% {
     background-position-y: 0px;
   }
-  30%{
-    background-position-y:0px
+  30% {
+    background-position-y: 0px;
   }
   50% {
     background-position-y: 3px;
   }
-  80%{
-    background-position-y:3px
+  80% {
+    background-position-y: 3px;
   }
   100% {
     background-position-y: 6px;
@@ -105,4 +155,8 @@ body.night span.scan {
   font-weight: 500;
   font-style: normal;
   font-display: swap;
+}
+
+@media screen {
+  
 }
