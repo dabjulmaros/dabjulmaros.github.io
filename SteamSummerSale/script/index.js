@@ -4,7 +4,7 @@ let oldDay, oldDate, oldTime;
 let date = new Date();
 const hour = date.getHours();
 let backgroundImage = "";
-if (hour > sunrise && hour < sunset) {
+if (hour >= sunrise && hour < sunset) {
   document.body.setAttribute('class', 'day');
   backgroundImage = "./assets/home_header_bg_day_japanese.gif";
 } else {
@@ -26,20 +26,20 @@ const dayOptions = { weekday: 'long' };
 
 function setDate() {
   date = new Date();
-  const newtTime = date.toLocaleDateString(undefined, timeOptions).split(',')[1];
+  const newTime = date.toLocaleDateString(undefined, timeOptions).split(',')[1];
   const newDate = date.toLocaleDateString(undefined, dateOptions);
   const newDay = date.toLocaleDateString(undefined, dayOptions);
 
-  if (newtTime !== oldTime) {
-    document.querySelector('.time').innerText = newtTime;
-    oldTime = newtTime
+  if (newTime !== oldTime) {
+    document.querySelector('.time').innerText = newTime;
+    oldTime = newTime
   }
   if (newDate !== oldDate) {
     document.querySelector('.date').innerText = newDate;
     oldDate = newDate
   }
   if (newDay !== oldDay) {
-    document.querySelector('.day').innerText = newDay;
+    document.querySelector('.weekDay').innerText = newDay;
     oldDay = newDay
   }
 }

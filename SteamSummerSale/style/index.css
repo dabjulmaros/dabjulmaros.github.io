@@ -55,10 +55,10 @@ body.day {
 body.day span.scan {
   background: linear-gradient(
     to bottom,
-    #305791,
-    #305791 2px,
     #4b619b,
-    #4b619b 4px
+    #4b619b 2px,
+    #305791,
+    #305791 4px
   );
 }
 body.night span.scan {
