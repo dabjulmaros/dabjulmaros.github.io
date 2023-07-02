@@ -38,7 +38,7 @@ body {
 }
 .hero {
   position: absolute;
-  top: -0.4px;
+  top: 0px;
   right: 0;
   bottom: 0;
   left: 0;
@@ -46,8 +46,7 @@ body {
   background-repeat: no-repeat;
 }
 
-.text,
-.scan {
+.text,.scan {
   width: 390px;
   height: 95px;
   display: block;
@@ -131,6 +130,16 @@ body.night span.scan {
   list-style: none;
 }
 
+@media (max-width: 800px) {
+  .hero{
+    background-position-x: 47%;
+  }
+  .text,.scan{
+    transform: translate(-50%);
+    width: 393px;
+  }
+}
+
 @keyframes scan {
   0% {
     background-position-y: 0px;
@@ -155,8 +164,4 @@ body.night span.scan {
   font-weight: 500;
   font-style: normal;
   font-display: swap;
-}
-
-@media screen {
-  
 }
