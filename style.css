@@ -9,10 +9,10 @@ body {
   justify-content: center;
   margin: 0;
   min-height: 100dvh;
-  background-image: radial-gradient(    rgba(255, 200, 60,.5) 9%,    transparent 9%  );
+  background-image: radial-gradient(rgba(255, 200, 60, 0.5) 9%, transparent 9%);
   background-position: 0% 0%;
   background-size: 5vmin 5vmin;
-  transition: background-position .3s ease-in-out;
+  transition: background-position 0.3s ease-in-out;
 }
 
 .content {
@@ -23,7 +23,7 @@ body {
   align-items: center;
   padding: 1rem;
 }
-a{
+a {
   color: rgb(255, 200, 60);
   text-decoration: none;
   z-index: 0;
@@ -125,20 +125,20 @@ a:hover {
   filter: grayscale(0);
 }
 
-body:hover:has(.card:nth-child(1):hover){
+body:hover:has(.card:nth-child(1):hover) {
   background-position: -1% -1%;
 }
-body:hover:has(.card:nth-child(2):hover){
+body:hover:has(.card:nth-child(2):hover) {
   background-position: 0% -1%;
 }
-body:hover:has(.card:nth-child(3):hover){
-  background-position:1% -1%;
+body:hover:has(.card:nth-child(3):hover) {
+  background-position: 1% -1%;
 }
-body:hover:has(.card:nth-child(4):hover){
-  background-position: -.5% 1%;
+body:hover:has(.card:nth-child(4):hover) {
+  background-position: -0.5% 1%;
 }
-body:hover:has(.card:nth-child(5):hover){
-  background-position: .5% 1%;
+body:hover:has(.card:nth-child(5):hover) {
+  background-position: 0.5% 1%;
 }
 
 @media only screen and (max-width: 950px) {
@@ -151,40 +151,37 @@ body:hover:has(.card:nth-child(5):hover){
     grid-template-rows: 1fr;
     gap: 1rem;
   }
-  body:hover:has(.card:nth-child(1):hover){
+  body:hover:has(.card:nth-child(1):hover) {
     background-position: -1% -1%;
   }
-  body:hover:has(.card:nth-child(2):hover){
+  body:hover:has(.card:nth-child(2):hover) {
     background-position: 1% -1%;
   }
-  body:hover:has(.card:nth-child(3):hover){
+  body:hover:has(.card:nth-child(3):hover) {
     background-position: -1% 0%;
   }
-  body:hover:has(.card:nth-child(4):hover){
+  body:hover:has(.card:nth-child(4):hover) {
     background-position: 1% 0%;
   }
-  body:hover:has(.card:nth-child(5):hover){
+  body:hover:has(.card:nth-child(5):hover) {
     background-position: 0% -1%;
   }
 }
 
-
 @media only screen and (max-width: 750px) {
- 
-  body:hover:has(.card:nth-child(1):hover){
+  body:hover:has(.card:nth-child(1):hover) {
     background-position: 0% -2%;
   }
-  body:hover:has(.card:nth-child(2):hover){
+  body:hover:has(.card:nth-child(2):hover) {
     background-position: 0% -1%;
   }
-  body:hover:has(.card:nth-child(3):hover){
+  body:hover:has(.card:nth-child(3):hover) {
     background-position: 0% 0%;
   }
-  body:hover:has(.card:nth-child(4):hover){
+  body:hover:has(.card:nth-child(4):hover) {
     background-position: 0% 1%;
   }
-  body:hover:has(.card:nth-child(5):hover){
+  body:hover:has(.card:nth-child(5):hover) {
     background-position: 0% 2%;
   }
 }
-
