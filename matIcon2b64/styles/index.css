@@ -76,7 +76,15 @@ button {
   line-height: 1rem;
   padding-top: 0.4rem;
 }
-
+.help {
+  position: relative;
+  top: -0.2rem;
+  display: none;
+  width: 8ch;
+  overflow: hidden;
+  text-wrap: nowrap;
+  animation: 3s 1 helpRoll;
+}
 /* from my main page */
 .sass {
   position: fixed;
@@ -115,4 +123,22 @@ button {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+@keyframes helpRoll {
+  0% {
+    display: inline-block;
+    width: 0ch;
+  }
+  25% {
+    display: inline-block;
+    width: 8ch;
+  }
+  75% {
+    display: inline-block;
+    width: 8ch;
+  }
+  100% {
+    display: inline-block;
+    width: 0ch;
+  }
 }

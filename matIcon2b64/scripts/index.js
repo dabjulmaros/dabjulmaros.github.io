@@ -5,6 +5,7 @@ const widthEle = document.querySelector("input#width");
 const heightEle = document.querySelector("input#height");
 const textArea = document.querySelector("textarea");
 const button = document.querySelector("button");
+const copiedEle = document.querySelector("span.help");
 
 let width = widthEle.value;
 let height = heightEle.value;
@@ -26,14 +27,15 @@ heightEle.addEventListener("input", () => {
 });
 
 button.addEventListener("click", () => {
-  navigator.clipboard.writeText("<empty clipboard>").then(
-    () => {
-      console.log("success");
-    },
-    () => {
-      console.log("nope");
-    }
-  );
+  console.log("clicked");
+  navigator.clipboard.writeText(textArea.value);
+  copiedEle.style.display = "inline-block";
+  console.log(copiedEle.style.display);
+  copiedEle.addEventListener("animationend", (e) => {
+    console.log(e);
+    copiedEle.style.display = "none";
+    console.log(copiedEle.style.display);
+  });
 });
 
 function drawToCanvas() {
