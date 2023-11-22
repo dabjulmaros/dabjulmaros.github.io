@@ -495,6 +495,7 @@ function setMirror(bool) {
 
 function parseText() {
   let text = document.getElementById("textArr").value;
+  if (text == "") return [32, 64, 128];
   text = text.replace(/[^(0-9),]*/g, "");
   let arr = text.split(",");
   for (var x = arr.length - 1; x >= 0; x--) {
