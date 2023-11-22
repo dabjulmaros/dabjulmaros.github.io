@@ -27,6 +27,7 @@ heightEle.addEventListener("input", () => {
 });
 
 button.addEventListener("click", () => {
+  if (textArea.value == "") return;
   navigator.clipboard.writeText(textArea.value);
   copiedEle.style.display = "inline-block";
   copiedEle.style.animation = "3s 1 helpRoll";
