@@ -1,0 +1,118 @@
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: "liga";
+}
+.flex {
+  display: flex;
+  justify-content: center;
+}
+
+body {
+  flex-direction: column;
+  height: 100svh;
+}
+main.container {
+  padding: 1rem 0;
+}
+div {
+  align-items: center;
+}
+div > * {
+  margin: 0 1rem;
+}
+canvas {
+  border: solid 1px var(--secondary);
+  background-color: var(--primary-focus);
+  width: 200px;
+  height: 200px;
+}
+
+div > span {
+  display: flex;
+  flex-direction: column;
+}
+
+label.number {
+  width: 6rem;
+}
+label.number:last-child > input {
+  margin-bottom: 0;
+}
+
+main > span {
+  position: relative;
+}
+textarea {
+  resize: none;
+}
+button {
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  background-color: var(--primary-focus);
+  padding: 5px;
+  top: -3rem;
+  right: 1rem;
+  line-height: 1rem;
+  padding-top: 0.4rem;
+}
+
+/* from my main page */
+.sass {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+}
+.sass:hover div {
+  opacity: 1;
+  width: 300px;
+  padding: 2rem;
+  border: 5px solid white;
+  transition: opacity 0.3s linear, width 0.3s linear, padding 0s linear,
+    border 0s linear;
+}
+.sass > div {
+  position: absolute;
+  line-height: 2rem;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 45ch;
+  background: #0c0c0c;
+  padding: 0;
+  border: 0px solid white;
+  transition: opacity 0.3s linear, width 0.3s linear, padding 0s linear 0.3s,
+    border 0s linear 0.3s;
+  border-radius: 1rem;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.sass > div > ul {
+  z-index: 3;
+  position: absolute;
+  width: 220px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
