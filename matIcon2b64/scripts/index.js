@@ -27,9 +27,9 @@ heightEle.addEventListener("input", () => {
 });
 
 button.addEventListener("click", () => {
-  console.log("clicked");
   navigator.clipboard.writeText(textArea.value);
   copiedEle.style.display = "inline-block";
+  copiedEle.style.animation = "3s 1 helpRoll";
   console.log(copiedEle.style.display);
   copiedEle.addEventListener("animationend", (e) => {
     console.log(e);
@@ -39,6 +39,10 @@ button.addEventListener("click", () => {
 });
 
 function drawToCanvas() {
+  if (input.value == "") {
+    textArea.value = "";
+    return;
+  }
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.font = `normal normal normal ${
     width > height ? width : height

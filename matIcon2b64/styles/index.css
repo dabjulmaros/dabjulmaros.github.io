@@ -83,7 +83,6 @@ button {
   width: 8ch;
   overflow: hidden;
   text-wrap: nowrap;
-  animation: 3s 1 helpRoll;
 }
 /* from my main page */
 .sass {
@@ -93,7 +92,7 @@ button {
 }
 .sass:hover div {
   opacity: 1;
-  width: 320px;
+  width: 350px;
   padding: 2rem;
   border: 5px solid white;
   transition: opacity 0.3s linear, width 0.3s linear, padding 0s linear,
@@ -105,7 +104,7 @@ button {
   bottom: 0;
   right: 0;
   width: 0;
-  height: 45ch;
+  height: 65ch;
   background: #0c0c0c;
   padding: 0;
   border: 0px solid white;
@@ -119,7 +118,7 @@ button {
 .sass > div > ul {
   z-index: 3;
   position: absolute;
-  width: 230px;
+  width: 250px;
   margin: 0;
   padding: 0;
   list-style: none;
