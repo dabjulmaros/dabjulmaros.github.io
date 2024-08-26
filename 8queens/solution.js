@@ -3,6 +3,8 @@ const checkbox = document.querySelector("#autoSolve");
 const animateCheckbox = document.querySelector("#animateSolve");
 const slider = document.querySelector("#slider");
 
+const checkerInputEle = document.querySelector("#drawChecker");
+
 let animDelay = slider.value;
 let animate = false;
 let solving = false;
@@ -45,6 +47,10 @@ animateCheckbox.addEventListener("input", (e) => {
 slider.addEventListener("input", (e) => {
   animDelay = e.target.value;
 });
+
+checkerInputEle.addEventListener('input', e => {
+  checker = e.target.checked;
+})
 
 // recursion
 async function solver(currentColumn) {

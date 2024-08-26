@@ -14,6 +14,8 @@ const darkSquare = "#352e2f";
 
 let dataArr;
 
+let checker = false;
+
 function drawCanvas() {
   ctx.clearRect(0, 0, canvasW, canvasW);
   let color = true;
@@ -40,11 +42,22 @@ function drawChecker(row, column) {
   let calcColumn = column * squareW;
   calcColumn += squareW / 2;
 
-  ctx.fillStyle = checkerColor;
-  ctx.beginPath();
-  ctx.arc(calcRow, calcColumn, pieceR, 0, 2 * Math.PI);
-  ctx.fill();
-  ctx.stroke();
+
+  // \u9813
+  if (!checker) {
+    ctx.fillStyle = "#ffffff"
+    ctx.font = `${squareW * .9}px serif`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText("\u2655", calcRow, calcColumn + 5);
+  } else {
+    ctx.fillStyle = checkerColor;
+    ctx.beginPath();
+    ctx.arc(calcRow, calcColumn, pieceR, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.stroke();
+  }
+
 }
 
 const allSolutionsFound = [];
@@ -57,9 +70,18 @@ function saveSolution() {
     ""
   );
   newImg.title = newImg.title.substring(-1);
+  newImg.dataset.arr = JSON.stringify(dataArr);
+  newImg.addEventListener('click', showSolved)
   otherSolutions.append(newImg);
 
   allSolutionsFound.push(dataArr.toLocaleString().replaceAll(",", ""));
+}
+
+function showSolved(e) {
+  solving = false;
+  const ele = e.target;
+  dataArr = JSON.parse(ele.dataset.arr);
+  drawCanvas();
 }
 
 function allSolutions() {
@@ -80,8 +102,7 @@ function allSolutions() {
   }
 
   console.log(
-    `The script has found ${allSolutionsFound.length} solution${
-      allSolutionsFound.length == 1 ? "" : "s"
+    `The script has found ${allSolutionsFound.length} solution${allSolutionsFound.length == 1 ? "" : "s"
     } with ${moreThanOne} duplicate${moreThanOne == 1 ? "" : "s"}`
   );
 }
