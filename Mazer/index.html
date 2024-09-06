@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Inspired By Dr. Roger Webster's assignment for FSW's Fall 2024-1 COP3505 -->
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mazer 🌽</title>
+  <style>
+    * {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      margin: 0;
+      /* overflow: hidden; */
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f4d13c;
+      flex-direction: column;
+      position: absolute;
+    }
+
+    .title {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 30px;
+      letter-spacing: -10px;
+      color: #2d7343;
+      padding: 0 1rem;
+      width: 100%;
+      background: #f4d13c;
+      text-align: right;
+    }
+
+    #fileInputZone {
+      max-width: 90%;
+    }
+
+    .dropContainer {
+      position: relative;
+      display: flex;
+      gap: 10px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+      padding: 20px;
+      border-radius: 10px;
+      border: 2px dashed #555;
+      color: #444;
+      cursor: pointer;
+      transition: background .2s ease-in-out, border .2s ease-in-out, color .2s ease-in-out;
+    }
+
+    .dropContainer:hover {
+      background: #2d7343;
+      border-color: #111;
+      color: #f4d13c;
+    }
+
+    .dropContainer:hover .dropTitle {
+      color: #f4d13c;
+    }
+
+    .dropTitle {
+      color: #444;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      transition: color .2s ease-in-out;
+    }
+
+    .drop-container.drag-active {
+      background: #2d7343;
+      border-color: #111;
+      color: #f4d13c;
+    }
+
+    .drop-container.drag-active .dropTitle {
+      color: #f4d13c;
+    }
+
+
+    input[type=file] {
+      width: 350px;
+      max-width: 100%;
+      color: #444;
+      padding: 5px;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid #555;
+    }
+
+    input[type=file]::file-selector-button,
+    button {
+      margin: 10px 20px;
+      border: none;
+      background: #2d7343;
+      padding: 10px 20px;
+      border-radius: 10px;
+      color: #fff;
+      font-weight: bolder;
+      cursor: pointer;
+      box-shadow: 0px 0px 5px #2d7343cd;
+      transition: background .2s ease-in-out, color .2s ease-in-out, box-shadow .2s ease-in-out;
+    }
+
+    input[type=file]::file-selector-button:hover,
+    button:hover {
+      background: #225532;
+      box-shadow: 3px 3px 5px #2d7343cd;
+    }
+
+    #maze {
+      max-width: 90%;
+    }
+
+    .mazeItem {
+      text-align: center;
+      outline: solid 1px black;
+      height: 10px;
+      width: 10px;
+      line-height: 10px;
+      font-size: 10px;
+    }
+
+    .mazeItem.E,
+    .mazeItem.S {
+      background-color: #d4b734;
+    }
+
+    .mazeItem.X {
+      background-color: #2d7343;
+      color: #f4d13c;
+    }
+
+    .mazeItem.O {
+      background-color: #84400f;
+    }
+
+    .mazeItem.G {
+      background-color: #ffd000;
+    }
+
+    .mazeItem.B {
+      background-color: #3f3732;
+    }
+
+    #tools,
+    #CancelLoad {
+      margin: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+    }
+
+    #mazeEdit {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #mazeEdit .mazeItem {
+      height: 22px;
+      width: 22px;
+      line-height: 22px;
+      font-size: 22px;
+    }
+
+    #mazeEdit label {
+      display: flex;
+      justify-content: end;
+      align-content: center;
+      margin: 2px 0;
+      margin-left: 22px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background .2s ease-in-out;
+    }
+
+    #mazeEdit label:hover {
+      background: #ffffff90;
+
+    }
+
+    .selected {
+      background: #ffffffcd;
+      margin-left: 0
+    }
+
+    .selected:before {
+      content: "\1F892";
+      width: 22px;
+      font-size: 40px;
+      /*! width: 22px; */
+      height: 22px;
+      text-align: center;
+      line-height: 11px;
+      color: black;
+    }
+
+    dialog[open] {
+      display: flex;
+    }
+
+    #messageDialog,
+    #exportDialog {
+      background: #f4d13ca6;
+      width: 100vw;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      padding: 0;
+    }
+
+    #messageDialog div,
+    #exportDialog div {
+      width: fit-content;
+      height: fit-content;
+      max-width: 300px;
+      padding: 2rem;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      border-radius: 1rem;
+      border: solid #2d7343;
+      background: #f4d13c;
+      box-shadow: 0 0 10px #000000f0;
+    }
+
+    #exportDialog label {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #validationError {
+      color: red;
+      font-weight: bold;
+    }
+
+    #exportDialog span {
+      display: flex;
+      margin-top: 1rem;
+    }
+
+    dialog button {
+      max-width: fit-content;
+      margin: 0 auto;
+    }
+
+    .attribution {
+      opacity: .7;
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+    }
+
+    .attribution:hover div,
+    .attribution div:hover {
+      display: block;
+    }
+
+    .attribution div {
+      display: none;
+      width: 200px;
+      margin: 1rem;
+      background: #f4d13c;
+      position: absolute;
+      bottom: -1rem;
+      right: -1rem;
+      padding: 1rem;
+      border: solid;
+    }
+
+    /* https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting */
+    .noSelect {
+      -webkit-touch-callout: none;
+      /* iOS Safari */
+      -webkit-user-select: none;
+      /* Safari */
+      -khtml-user-select: none;
+      /* Konqueror HTML */
+      -moz-user-select: none;
+      /* Old versions of Firefox */
+      -ms-user-select: none;
+      /* Internet Explorer/Edge */
+      user-select: none;
+      /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+    }
+  </style>
+</head>
+
+<body>
+  <span class="title">
+    <h1>MAiZER 🌽</h1>
+  </span>
+  <span class="container">
+    <span id="maze" style="display: none;">
+
+    </span>
+    <span id="mazeEdit" style="display: none;">
+      <label class="selected" onclick="SetSelected(this)" data-type="X">
+        <span class="mazeItem X">X</span>
+      </label>
+      <label data-type="O" onclick="SetSelected(this)">
+        <span class="mazeItem O">O</span>
+      </label>
+      <label data-type="S" onclick="SetSelected(this)">
+        <span class="mazeItem S">S</span>
+      </label>
+      <label data-type="E" onclick="SetSelected(this)">
+        <span class="mazeItem E">E</span>
+      </label>
+    </span>
+  </span>
+
+  <span id="puzzleTools" style="display: none;">
+    <button onclick="Solve()">Solve</button>
+    <button onclick="Reset()">Reset</button>
+    <button onclick="Load()">Load</button>
+    <button onclick="Edit()">Edit</button>
+
+  </span>
+  <span id="editTools" style="display: none;">
+    <button onclick="Done()">Done</button>
+    <button onclick="Export()">Export</button>
+    <button onclick="Reset(true)">Reset</button>
+    <button onclick="Validate()">Validate</button>
+    <button onclick="CancelEdit()">Cancel</button>
+
+  </span>
+  <span id="fileInputZone">
+    <label for="fileInput" class="dropContainer" id="dropContainer">
+      <span class="dropTitle">Drop File Here</span>
+      or
+      <input type="file" name="fileInput" id="fileInput" accept=".txt"></label>
+  </span>
+  <span id="CancelLoad" style="display: none;">
+    <button onclick="CancelLoad()">Cancel</button>
+  </span>
+  <dialog id="exportDialog">
+    <div>
+      <label>
+        Enter Your Maze Name:
+        <input type="text" id="saveInputVal" />
+        <span id="validationError"></span>
+      </label>
+      <span>
+        <button onclick="writeFile()">Save</button>
+        <button onclick="closeSave()">Cancel</button>
+      </span>
+    </div>
+
+  </dialog>
+  <dialog id="messageDialog">
+    <div>
+      <p id="messageInDialog">
+      </p>
+      <button onclick="closeMessage()">Close</button>
+    </div>
+
+  </dialog>
+  <div class="attribution">❔
+    <div>
+      This html file was inspired by Dr. Roger Webster's assignment for FSW's Fall 2024-1 COP3505.
+      This file rewrote his assignment to JS, and added a few "Level" editor.
+    </div>
+  </div>
+</body>
+<script>
+  const mazeArea = document.querySelector('#maze');
+  const toolsArea = document.querySelector('#puzzleTools');
+  const editToolsArea = document.querySelector('#editTools');
+
+  const mazeEditArea = document.querySelector('#mazeEdit')
+
+  const fileInputZone = document.querySelector('#fileInputZone')
+  const CancelLoadArea = document.querySelector('#CancelLoad')
+  const dropContainer = document.querySelector('#dropContainer')
+  const fileInput = document.querySelector('#fileInput');
+
+  const dialogMessage = document.querySelector('#messageDialog');
+  const dialogExport = document.querySelector('#exportDialog');
+  const saveFileVal = document.querySelector('#saveInputVal');
+  const message = document.querySelector('#messageInDialog');
+  const validationErrorMessage = document.querySelector('#validationError')
+
+  //Maze Data
+  let maze = [];
+  let loadedMaze = [];
+  let numCols = 0;
+  let numRows = 0;
+  let mazeStart = { row: 0, col: 0 }
+  let mazeEnd = { row: 0, col: 0 }
+
+  //SolutionData
+  const Available = ["O", "S", "E"];
+  let foundSolution = false;
+  let recursiveCalls = 0;
+  let steps = 0;
+  let numberOfTurns = 0;
+
+  // Edit
+  let editMode = false;
+  let selected;
+  let editOptions = ["E", "S", "O", "X"];
+
+  dropContainer.addEventListener("dragover", (e) => {
+    // prevent default to allow drop
+    e.preventDefault()
+  }, false)
+
+  dropContainer.addEventListener("dragenter", () => {
+    dropContainer.classList.add("drag-active")
+  })
+
+  dropContainer.addEventListener("dragleave", () => {
+    dropContainer.classList.remove("drag-active")
+  })
+
+  dropContainer.addEventListener("drop", (e) => {
+    e.preventDefault()
+    dropContainer.classList.remove("drag-active")
+    fileInput.files = e.dataTransfer.files
+    loadFile();
+  })
+
+
+  fileInput.addEventListener('input', () => {
+    loadFile()
+  })
+
+  function loadFile() {
+    if (fileInput.files.length) {
+      const file = fileInput.files[0];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const result = e.target.result;
+        loadMaze(result)
+      }
+      reader.readAsText(file);
+    }
+  }
+  function loadMaze(mazeString) {
+    fileInputZone.style.display = 'none';
+    CancelLoadArea.style.display = "none";
+
+    mazeStart = {}
+    mazeEnd = {}
+
+    //clean input
+    let mazeInputArr = mazeString.replaceAll('\r', '').split('\n');
+    mazeInputArr = mazeInputArr.filter(e => { if (e !== "") return e });
+
+    //get max col count
+    let tempCol = 0;
+    for (const x of mazeInputArr) {
+      if (x !== '' && x.length > tempCol)
+        tempCol = x.length;
+    }
+
+
+    numRows = mazeInputArr.length;
+    numCols = tempCol;
+
+    //create arr from from rows and max cols
+    //I was hoping to use array(length).fill(array(length))
+    // but that creates issues with shallow copies
+    maze = [];
+    loadedMaze = [];
+    for (let row = 0; row < numRows; row++)
+      loadedMaze.push(Array(numCols).fill('X'))
+
+
+    for (const row in mazeInputArr) {
+      for (const col in mazeInputArr[row]) {
+        loadedMaze[row][col] = mazeInputArr[row][col];
+        if (loadedMaze[row][col] == "E") {
+          mazeEnd = { row, col }
+        }
+        if (loadedMaze[row][col] == "S") {
+          mazeStart = { row, col }
+        }
+      }
+    }
+    //create a copy of array without references;
+    maze = JSON.parse(JSON.stringify(loadedMaze));
+    drawMaze(maze);
+
+  }
+  function drawMaze(mazeToDraw, editable = false) {
+    mazeArea.innerHTML = "";
+    const mazeHolder = document.createElement("table")
+
+    for (const row in mazeToDraw) {
+      const mazeRow = document.createElement('tr');
+      for (const col in mazeToDraw[row]) {
+        const child = document.createElement("td")
+        child.innerText = mazeToDraw[row][col];
+        child.title = mazeToDraw[row][col];
+        child.classList.add('mazeItem');
+        child.classList.add('noSelect');
+        child.classList.add(mazeToDraw[row][col]);
+        if (editable) {
+          child.dataset.row = row;
+          child.dataset.col = col;
+          child.addEventListener('click', EditChild);
+
+        }
+        mazeRow.appendChild(child);
+      }
+      mazeHolder.appendChild(mazeRow);
+    }
+    mazeArea.appendChild(mazeHolder);
+    mazeArea.style.display = ""
+    if (!editable) toolsArea.style.display = ""
+  }
+
+  function Load() {
+    fileInputZone.style.display = "";
+    CancelLoadArea.style.display = "";
+    mazeArea.style.display = "none";
+    toolsArea.style.display = "none";
+  }
+
+  function CancelLoad() {
+    fileInputZone.style.display = "none";
+    CancelLoadArea.style.display = "none";
+    mazeArea.style.display = "";
+    toolsArea.style.display = "";
+  }
+
+  function Reset(editMode = false) {
+    maze = JSON.parse(JSON.stringify(loadedMaze));
+    drawMaze(maze, editMode);
+  }
+
+  function Solve() {
+    foundSolution = false;
+    recursiveCalls = 0;
+    steps = 0;
+    numberOfTurns = 0;
+
+    recursiveCall(mazeStart.row, mazeStart.col);
+    if (!foundSolution) {
+      drawMaze(maze);
+      message.innerText = `HELP!\nI cant find the exit!\nSteps: ${steps}\nRecursive Calls: ${recursiveCalls}`;
+      dialogMessage.show()
+    }
+  }
+
+  function recursiveCall(row, col) {
+    // just js things
+    row = parseInt(row);
+    col = parseInt(col);
+
+    if (row == mazeEnd.row && col == mazeEnd.col) {
+      foundSolution = true;
+      drawMaze(maze);
+      message.innerText = `Found The Exit!\nSteps: ${steps}\nRecursive Calls: ${recursiveCalls}`;
+      dialogMessage.show()
+      return;
+    }
+
+    if (!Available.includes(maze[row][col])) return;
+    recursiveCalls++;
+
+    steps++;
+    numberOfTurns++;
+
+    maze[row][col] = "G";
+
+    if (row + 1 < numRows) {
+      recursiveCall(row + 1, col);
+      if (foundSolution) return;
+    }
+    if (row - 1 >= 0) {
+      recursiveCall(row - 1, col);
+      if (foundSolution) return;
+    }
+    if (col + 1 < numCols) {
+      recursiveCall(row, col + 1)
+      if (foundSolution) return;
+    }
+    if (col - 1 > 0) {
+      recursiveCall(row, col - 1)
+      if (foundSolution) return;
+    }
+    numberOfTurns--;
+    steps--;
+    maze[row][col] = "B";
+    drawMaze(maze);
+    return
+  }
+
+  function Edit() {
+    maze = JSON.parse(JSON.stringify(loadedMaze));
+    editMode = true;
+    drawMaze(maze, true);
+    mazeEditArea.style.display = "";
+    toolsArea.style.display = "none";
+    editToolsArea.style.display = "";
+    selected = document.querySelector('.selected').dataset.type;
+  }
+  function CancelEdit() {
+    maze = JSON.parse(JSON.stringify(loadedMaze));
+    editMode = false;
+    drawMaze(maze);
+    mazeEditArea.style.display = "none";
+    toolsArea.style.display = "";
+    editToolsArea.style.display = "none";
+  }
+
+  function EditChild(e) {
+    const clickedItem = e.target;
+
+    if (clickedItem.title == selected) return;
+
+    const clickedRow = e.target.dataset.row;
+    const clickedCol = e.target.dataset.col;
+    maze[clickedRow][clickedCol] = selected;
+
+    clickedItem.className = `mazeItem noSelect ${selected}`;
+    clickedItem.title = selected;
+    clickedItem.innerText = selected;
+
+  }
+
+  function SetSelected(e) {
+    document.querySelector('.selected').classList.remove('selected');
+    e.classList.add('selected');
+    selected = e.dataset.type;
+  }
+
+  function Validate() {
+    if (!CheckMaze()) {
+      message.innerText = "Invalid Maze!\nPlease ensure your maze has 1 START and 1 EXIT";
+    } else {
+      message.innerText = "This is a valid maze!\nBut bear in mind, this maze has not been check to verified for a valid route";
+    }
+    dialogMessage.show();
+  }
+
+  // Simply check if the maze includes 1 start, and end
+  function CheckMaze(using = false) {
+    let sCount = 0;
+    let eCount = 0;
+    for (const row in maze) {
+      for (const col in maze[row]) {
+        if (maze[row][col] === "S") {
+          sCount += 1;
+          if (using) mazeStart = { row, col };
+        }
+        else if (maze[row][col] === "E") {
+          eCount += 1;
+          if (using) mazeEnd = { row, col };
+        }
+      }
+    }
+
+    if (sCount === 1 && eCount === 1) {
+      return true;
+    }
+    return false;
+  }
+
+  function Export() {
+
+    if (!CheckMaze()) {
+      message.innerText = "Invalid Maze!\nPlease ensure your maze has 1 START and 1 EXIT";
+      dialogMessage.show();
+    } else {
+      dialogExport.show();
+    }
+
+  }
+
+  async function writeFile() {
+
+    if (saveFileVal.value.match(/[^\w\d\s]/)) {
+      validationErrorMessage.innerText = "Error: Please ensure the file name only contains numbers and letters";
+      return;
+    }
+    validationErrorMessage.innerText = "";
+
+    let mazeString = "";
+    for (const r of maze) {
+      mazeString += r.join('') + "\n";
+    }
+
+    //https://stackoverflow.com/questions/45831191/generate-and-download-file-from-js
+    let element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(mazeString));
+    element.setAttribute('download', saveFileVal.value + ".txt");
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+
+    dialogExport.close()
+
+    loadedMaze = JSON.parse(JSON.stringify(maze));
+    CancelEdit();
+  }
+
+  function Done() {
+
+    if (!CheckMaze(true)) {
+      message.innerText = "Invalid Maze!\nPlease ensure your maze has 1 START and 1 EXIT";
+      dialogMessage.show();
+      return;
+    }
+
+    loadedMaze = JSON.parse(JSON.stringify(maze));
+    CancelEdit();
+  }
+
+
+  function closeMessage() {
+    dialogMessage.close()
+  }
+  function closeSave() {
+    dialogExport.close();
+  }
+
+  let down = false
+  mazeArea.addEventListener('mousedown', e => {
+    down = true;
+  })
+  mazeArea.addEventListener('mouseup', e => {
+    down = false;
+  })
+  mazeArea.addEventListener('mousemove', e => {
+    if (down && editMode && e.target.nodeName == "TD") {
+      EditChild(e);
+    }
+  })
+</script>
+
+</html>
